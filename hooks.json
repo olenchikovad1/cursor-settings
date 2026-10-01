@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      { "command": "py -X utf8 ./hooks/guard_destructive.py" }
+    ],
+    "sessionStart": [
+      { "command": "py -X utf8 ./hooks/autosync_cursor.py --session-start", "timeout": 60 },
+      { "command": "py -X utf8 ./hooks/time_estimate.py sessionStart", "timeout": 20 }
+    ],
+    "beforeSubmitPrompt": [
+      { "command": "py -X utf8 ./hooks/time_estimate.py beforeSubmitPrompt", "timeout": 20 }
+    ],
+    "afterAgentResponse": [
+      { "command": "py -X utf8 ./hooks/time_estimate.py afterAgentResponse", "timeout": 10 }
+    ],
+    "postToolUse": [
+      { "command": "py -X utf8 ./hooks/time_estimate.py postToolUse", "timeout": 10 }
+    ],
+    "stop": [
+      { "command": "py -X utf8 ./hooks/time_estimate.py stop", "loop_limit": 1, "timeout": 20 },
+      { "command": "py -X utf8 ./hooks/autosync_cursor.py --stop", "timeout": 20 }
+    ],
+    "sessionEnd": [
+      { "command": "py -X utf8 ./hooks/autosync_cursor.py --session-end", "timeout": 40 }
+    ],
+    "preCompact": [
+      { "command": "py -X utf8 ./hooks/compact_hint.py", "timeout": 10 }
+    ]
+  }
+}

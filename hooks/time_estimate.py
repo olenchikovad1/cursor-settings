@@ -1,0 +1,227 @@
+"""Памятка с эталонами в начале хода и факт хода в журнал Cursor.
+
+Транскрипт Cursor не содержит вызовов инструментов, поэтому шаг меряется
+событиями хука: начало хода, текст ответа, вызовы, конец. Запись идёт в
+~/.cursor/time-analysis и относится к версии «переход на курсор» по времени.
+
+Запуск: py -X utf8 ./hooks/time_estimate.py <событие>
+"""
+
+import json
+import os
+import socket
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+HOOKS = Path(__file__).resolve().parent
+sys.path.insert(0, str(HOOKS))
+sys.path.insert(0, str(Path.home() / ".cursor" / "time-analysis"))
+
+TURNS = Path.home() / ".cursor" / "time-analysis" / "turns"
+MIN_SECONDS = 3
+
+EDIT = {"StrReplace", "Edit", "EditNotebook", "MultiEdit"}
+WRITE = {"Write"}
+
+
+def read_request() -> dict:
+    raw = sys.stdin.buffer.read()
+    if not raw.strip():
+        return {}
+    try:
+        return json.loads(raw.decode("utf-8"))
+    except (ValueError, UnicodeError):
+        return {}
+
+
+def emit(payload: dict) -> None:
+    print(json.dumps(payload, ensure_ascii=True))
+
+
+def state_path(request: dict) -> Path | None:
+    cid = request.get("conversation_id") or request.get("session_id")
+    if not cid:
+        return None
+    return TURNS / f"{cid}.json"
+
+
+def load(path: Path | None) -> dict:
+    if path is None or not path.is_file():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def save(path: Path | None, state: dict) -> None:
+    if path is None:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+
+
+def reminder() -> str:
+    try:
+        from check_time_estimate_start import REMINDER, reference_line
+        line = reference_line()
+    except Exception:
+        return ""
+    return REMINDER + (("\n" + line) if line else "")
+
+
+def on_prompt(request: dict) -> dict:
+    path = state_path(request)
+    save(path, {
+        "start": datetime.now(timezone.utc).isoformat(),
+        "generation": request.get("generation_id"),
+        "tools": [],
+        "text": "",
+        "logged": False,
+    })
+    text = reminder()
+    out = {"continue": True}
+    if text:
+        out["additional_context"] = text
+    return out
+
+
+def on_text(request: dict) -> dict:
+    path = state_path(request)
+    state = load(path)
+    state["text"] = request.get("text") or ""
+    save(path, state)
+    return {}
+
+
+def on_tool(request: dict) -> dict:
+    path = state_path(request)
+    state = load(path)
+    if not state.get("start"):
+        state["start"] = datetime.now(timezone.utc).isoformat()
+    name = request.get("tool_name") or ""
+    cmd = ""
+    if name == "Shell":
+        cmd = str((request.get("tool_input") or {}).get("command") or "")[:240]
+    state.setdefault("tools", []).append({"name": name, "cmd": cmd})
+    save(path, state)
+    return {}
+
+
+def classify(tools: list[dict]) -> str:
+    names = [t.get("name") for t in tools]
+    cmds = "\n".join(t.get("cmd") or "" for t in tools)
+    writes = sum(n in WRITE for n in names)
+    edits = sum(n in EDIT for n in names)
+    if any(x in cmds for x in ("pytest", "unittest", "npm test", "vitest")):
+        return "тесты: целевые"
+    if "git push" in cmds:
+        return "git: пуш"
+    if "git commit" in cmds:
+        return "git: коммит"
+    if writes and edits:
+        return "код: новое и правки"
+    if writes:
+        return "код: новый файл"
+    if edits > 1:
+        return "код: правки (2+ файла)"
+    if edits == 1:
+        return "код: правки (1 файл)"
+    if any(n in ("Grep", "Glob") for n in names):
+        return "поиск по коду"
+    if "Read" in names:
+        return "чтение файлов"
+    if cmds.strip():
+        return "команда прочая"
+    return "прочее"
+
+
+def announcement_lines(text: str) -> list[str]:
+    from _time_estimate_common import ESTIMATE_PATTERN, _word_count
+    lines = []
+    for line in text.splitlines():
+        stripped = line.strip().lstrip("-*")
+        if ESTIMATE_PATTERN.search(stripped) and _word_count(stripped) <= 16:
+            lines.append(stripped)
+    return lines
+
+
+def on_stop(request: dict) -> dict:
+    if request.get("status") not in (None, "completed"):
+        return {}
+    if int(request.get("loop_count") or 0) > 0:
+        return {}
+    path = state_path(request)
+    state = load(path)
+    tools = state.get("tools") or []
+    if not tools or state.get("logged"):
+        return {}
+    try:
+        started = datetime.fromisoformat(state["start"])
+    except (KeyError, ValueError):
+        return {}
+    elapsed = (datetime.now(timezone.utc) - started).total_seconds()
+    state["logged"] = True
+    save(path, state)
+    if elapsed >= MIN_SECONDS:
+        try:
+            import steps_store
+            kind = classify(tools)
+            step = {
+                "sec": round(elapsed, 1),
+                "kind": kind,
+                "started": state["start"],
+                "host": os.environ.get("COMPUTERNAME") or socket.gethostname(),
+                "files_created": sum(t.get("name") in WRITE for t in tools),
+                "files_edited": sum(t.get("name") in EDIT for t in tools),
+                "commands": sum(t.get("name") == "Shell" for t in tools),
+                "model": "cursor",
+                "phrase": (state.get("text") or "").strip().splitlines()[:1] or [""],
+            }
+            step["phrase"] = step["phrase"][0][:160]
+            steps_store.append([steps_store.to_record(step, steps_store.load_step_refs())])
+        except Exception:
+            pass
+    text = state.get("text") or ""
+    try:
+        from _time_estimate_common import step_verdict
+        lines = announcement_lines(text)
+    except Exception:
+        return {}
+    if not lines:
+        return {"followup_message": (
+            "Ход с действиями прошёл без строки оценки. Перед следующим шагом "
+            "одна строка: действие и время из эталона, состав в скобках.")}
+    verdict = next((step_verdict(line) for line in lines if step_verdict(line)), None)
+    if verdict:
+        return {"followup_message": "Оценка шага: " + verdict}
+    return {}
+
+
+def main() -> int:
+    event = sys.argv[1] if len(sys.argv) > 1 else ""
+    request = read_request()
+    event = event or request.get("hook_event_name") or ""
+    if event == "sessionStart":
+        text = reminder()
+        emit({"additional_context": text} if text else {})
+    elif event == "beforeSubmitPrompt":
+        emit(on_prompt(request))
+    elif event == "afterAgentResponse":
+        emit(on_text(request))
+    elif event == "postToolUse":
+        emit(on_tool(request))
+    elif event == "stop":
+        emit(on_stop(request))
+    else:
+        emit({})
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except Exception:
+        emit({})
+        sys.exit(0)

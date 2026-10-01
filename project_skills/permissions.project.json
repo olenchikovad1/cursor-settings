@@ -1,0 +1,15 @@
+{
+  "terminalAllowlist": [
+    "git status",
+    "git diff",
+    "git log",
+    "git show",
+    "git branch"
+  ],
+  "autoRun": {
+    "block_instructions": [
+      "Пуш, коммит, установка пакетов, миграции, docker и команды, меняющие данные, только после подтверждения человеком.",
+      "Force-push в main, master и develop не выполняется."
+    ]
+  }
+}

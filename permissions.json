@@ -1,0 +1,25 @@
+{
+  "terminalAllowlist": [
+    "git status", "git log", "git diff", "git show", "git branch", "git remote",
+    "git fetch", "git ls-files", "git blame", "git rev-parse", "git add",
+    "git commit", "git merge", "git rebase", "git checkout", "git switch",
+    "git restore", "git cherry-pick", "git revert", "git stash", "git pull",
+    "git push", "git worktree",
+    "py", "python", "pytest", "uv", "pip", "poetry", "ruff", "mypy",
+    "npm", "pnpm", "yarn", "tsc", "eslint", "oxlint", "make",
+    "docker", "ssh", "scp", "rsync", "psql", "pg_dump", "pg_restore", "redis-cli",
+    "rg", "ls", "dir",
+    "gh", "npx", "node", "vitest", "bash", "curl",
+    "awk", "cat", "cp", "diff", "echo", "find", "grep", "head", "tail", "wc",
+    "mkdir", "mv", "sed", "sort", "stat", "which", "xxd", "netstat"
+  ],
+  "autoRun": {
+    "allow_instructions": [
+      "Обычные команды разработки на этой машине выполняются без вопроса: чтение, тесты, git включая push ветки задачи, установка пакетов, docker без удаления данных."
+    ],
+    "block_instructions": [
+      "Миграции alembic upgrade и alembic downgrade только после подтверждения.",
+      "Force-push, удаление баз и томов docker, рекурсивное удаление от корня — не выполнять."
+    ]
+  }
+}
