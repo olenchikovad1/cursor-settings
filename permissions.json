@@ -1,4 +1,7 @@
 {
+  "mcpAllowlist": [
+    "*:*"
+  ],
   "terminalAllowlist": [
     "git", "gh", "origin",
     "py", "python", "python3", "pytest", "uv", "uvx", "pip", "pipx", "poetry", "ruff", "mypy", "alembic",
@@ -19,7 +22,11 @@
     "New-Item", "Copy-Item", "Move-Item", "Remove-Item", "Rename-Item",
     "Expand-Archive", "Compress-Archive", "Start-Sleep", "Start-Process",
     "Invoke-WebRequest", "Invoke-RestMethod",
-    "$", "&", "(", "[", "try", "do", "if", "foreach", "cd"
+    "$", "&", "(", "[", "try", "do", "if", "foreach", "cd",
+    ".\\", "./", "..\\", "../",
+    "C:\\", "D:\\", "E:\\",
+    ".venv", "venv\\", "venv/",
+    "Select-Object", "Get-Content"
   ],
   "autoRun": {
     "allow_instructions": [
