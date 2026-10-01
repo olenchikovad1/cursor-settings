@@ -20,7 +20,7 @@
 4. Проставить SP сравнением с эталонами.
 5. Прогнать валидатор:
    ```bash
-   py -X utf8 ~/.claude/hooks/lint_plan.py ~/.cursor/plans/NNN-*.md
+   py -X utf8 ~/.cursor/hooks/lint_plan.py ~/.cursor/plans/NNN-*.md
    ```
 6. Показать пользователю итог: сколько историй, суммарные SP и минуты.
 

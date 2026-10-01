@@ -25,7 +25,8 @@ description: >-
 Новый план пишется в `~/.cursor/plans/`, нумерация там своя, с 001;
 `~/.claude/plans/` в счёт не идёт (подробно — [numbering.md](numbering.md)).
 Шаблон — `~/.cursor/plans/_TEMPLATE.md`. Валидатор
-`lint_plan.py` пока живёт у Claude и отсюда не запускается.
+`~/.cursor/hooks/lint_plan.py` запускается хуком `postToolUse` после записи
+и правки плана.
 
 ## Правила
 

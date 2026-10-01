@@ -44,12 +44,10 @@ def extra_plan_dirs() -> list[Path]:
 def plan_dirs() -> list[Path]:
     return [PLANS_DIR, *extra_plan_dirs()]
 
-# Планы до этого номера написаны списком шагов и не мигрируются. Проверять их
-# нельзя не из вежливости, а по делу: `execute-plan` дописывает журнал и в
-# старый план тоже, хук бы сработал и заблокировал работу на ровном месте.
-#
-# 021 закрыт 04.09.2026 в старом формате, поэтому первый план на историях — 022.
-FIRST_STORY_PLAN = 22
+# В Cursor нумерация планов начата заново 01.10.2026: с 001 это уже истории,
+# а не списки шагов. Порог 022 — история каталога Claude, здесь он глушил бы
+# хук на всех живых планах.
+FIRST_STORY_PLAN = 1
 
 # С этого плана размер обязан быть назван сравнением с эталонной историей.
 # Граница нужна, потому что правило смотрит вперёд: в планах 022-035 размеры
@@ -571,6 +569,32 @@ def open_plan_numbers() -> set[int]:
     return out
 
 
+def hook_targets(payload: dict) -> list[Path]:
+    """Файлы плана из входа хука Cursor.
+
+    Правка инструментом приходит в `path` (у Claude было `file_path`).
+    Команда оболочки пути в аргументах не отдаёт — её ищем в тексте команды,
+    иначе проверка видела бы только один способ записи.
+    """
+    inp = payload.get("tool_input") or {}
+    if not isinstance(inp, dict):
+        return []
+    found: list[Path] = []
+    for key in ("file_path", "path", "notebook_path"):
+        raw = inp.get(key)
+        if isinstance(raw, str) and raw.strip():
+            found.append(Path(raw))
+    command = inp.get("command")
+    if isinstance(command, str):
+        for match in re.finditer(r"plans[\\/](\d{3}-[^\s\"']+\.md)", command):
+            found.append(PLANS_DIR / match.group(1))
+    seen: list[Path] = []
+    for path in found:
+        if path not in seen:
+            seen.append(path)
+    return seen
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="*")
@@ -583,16 +607,21 @@ def main() -> int:
             payload = json.load(sys.stdin)
         except (ValueError, OSError):
             return 0
-        inp = payload.get("tool_input") or {}
-        target = inp.get("file_path") or inp.get("notebook_path")
-        if not target:
+        reports = [
+            lint_file(path)
+            for path in hook_targets(payload)
+            if is_plan(path) and not path.name.startswith("_")
+        ]
+        if not reports:
             return 0
-        path = Path(target)
-        if not is_plan(path) or path.name.startswith("_"):
-            return 0
-        r = lint_file(path)
-        out, bad = render([r])
+        out, bad = render(reports)
         if out:
+            # postToolUse уже не отменяет запись. Текст уходит агенту, код 2
+            # остаётся сигналом структурной ошибки — как у хука Claude.
+            print(json.dumps(
+                {"additional_context": "Валидатор плана:\n" + out},
+                ensure_ascii=False,
+            ))
             print(out, file=sys.stderr)
         return 2 if bad else 0
 

@@ -15,7 +15,12 @@
       { "command": "py -X utf8 ./hooks/time_estimate.py afterAgentResponse", "timeout": 10 }
     ],
     "postToolUse": [
-      { "command": "py -X utf8 ./hooks/time_estimate.py postToolUse", "timeout": 10 }
+      { "command": "py -X utf8 ./hooks/time_estimate.py postToolUse", "timeout": 10 },
+      {
+        "command": "py -X utf8 ./hooks/lint_plan.py --hook",
+        "timeout": 15,
+        "matcher": "Write|StrReplace|EditNotebook|Shell"
+      }
     ],
     "stop": [
       { "command": "py -X utf8 ./hooks/time_estimate.py stop", "loop_limit": 1, "timeout": 20 },

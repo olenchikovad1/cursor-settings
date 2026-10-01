@@ -1,7 +1,7 @@
 ---
 project: cursor-home
 epic: переход на Cursor
-status: in-progress
+status: done
 base_branch: master
 branch: null
 depends_on: []
@@ -324,3 +324,27 @@ platform: `a885f3e` в `develop` через `task/cursor-move` (ff, ветка �
 переехали); проверен прямым вызовом `install()` — `pytest`/`uv` на машине
 нет. Трём своим скиллам дописаны «Use when», «Проверка», «Смежное» —
 валидатор чист. В работе на момент записи: старт US-0005 (docroi).
+
+### 2026-10-01 · home · US-0005 закрыта
+
+docroi: `a60df86` в `develop`, запушен. Факт 6.0 мин при полке 18.2. Заведён
+манифест `projects.d/docroi.md`. `guard_component_kit` — порт из plm, `--scan`
+нарушений не нашёл. Запреты проекта (main, `deploy.sh`, запись в DataLake)
+дописаны в `block_instructions` проектного `permissions.json`.
+
+### 2026-10-01 · home · US-0006 закрыта
+
+reference: `848f44c` в `master`, запушен. Факт 34.9 мин при полке 16.5
+(×2.11). Причина: правки файлов на `D:` вне открытой папки чата зависали на
+подтверждении и были прерваны; одна всё же записалась, и раздел хуков
+задвоился — убран. Ссылка на решение 0007 из `process-git` не проходила
+валидатор (вне каталога правила) — переписана путём.
+
+### 2026-10-01 · home · US-0007 закрыта
+
+assemblage-point: `89dba15` в `feat/alexey-home`, запушен; вливание в
+`develop` — вопрос владельцу (`notes/011-open-questions.md`). 47 правил
+старого поколения сведены в 28 библиотечных, три своих оставлены; три
+отступления перенесены. `check_develop_commit` переписан под Cursor как
+`guard_shared_branch_commit` и проверен. Вложенные `backend/CLAUDE.md` и
+`web/CLAUDE.md` стали `AGENTS.md`. План выполнен.
