@@ -56,18 +56,21 @@ PLANS_DIR = Path.home() / ".cursor" / "plans"
 
 
 def extra_plan_dirs() -> list[Path]:
-    """Каталоги планов вне ~/.claude/plans — из машинного local.json
+    """Каталоги планов вне ~/.cursor/plans — из машинного local.json
     (`extra_plans_dirs`, не в git): приватные планы, которые не должны
     уезжать синхронизацией, считаются планами на этой машине."""
     try:
-        data = json.loads((Path.home() / ".claude" / "local.json").read_text(encoding="utf-8"))
+        data = json.loads((Path.home() / ".cursor" / "local.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return []
     return [Path(p) for p in data.get("extra_plans_dirs", []) if Path(p).is_dir()]
 
 
 def plan_dirs() -> list[Path]:
-    return [PLANS_DIR, Path.home() / ".claude" / "plans", *extra_plan_dirs()]
+    # ~/.claude/plans сюда не входит: нумерация в Cursor начата заново с 001,
+    # и номер «001» там — другой план. Поиск по обоим каталогам находил бы
+    # чужой файл первым (".claude" по алфавиту раньше ".cursor").
+    return [PLANS_DIR, *extra_plan_dirs()]
 # Было 20. Шкале сторипоинтов нужна плотность: чтобы полка считалась по медиане,
 # на каждое значение SP нужно минимум SP_MIN_SAMPLES замеров, а значений в шкале
 # девять. При лимите 20 записей засев вымывался бы за пару сессий. Файл маленький,

@@ -40,13 +40,17 @@ RANK = {"allow": 0, "ask": 1, "deny": 2}
 
 
 def installed() -> list:
+    # Сначала библиотечные проверки в заданном порядке, затем проектные
+    # `guard_*.py`, которых в библиотеке нет (например, сторож набора компонентов
+    # в plm): проектный хук не должен требовать правки диспетчера.
+    names = [n for n in GUARDS if (HERE / f"{n}.py").is_file()]
+    names += sorted(p.stem for p in HERE.glob("guard_*.py") if p.stem not in names)
     out = []
-    for name in GUARDS:
-        if (HERE / f"{name}.py").is_file():
-            try:
-                out.append(importlib.import_module(name))
-            except Exception as failure:  # noqa: BLE001
-                print(f"rails: {name} не загрузился: {failure}", file=sys.stderr)
+    for name in names:
+        try:
+            out.append(importlib.import_module(name))
+        except Exception as failure:  # noqa: BLE001
+            print(f"rails: {name} не загрузился: {failure}", file=sys.stderr)
     return out
 
 

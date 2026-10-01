@@ -36,7 +36,7 @@ py -X utf8 ~/.claude/hooks/sync_state.py --status
 ## 2. Найти незакрытые планы
 
 ```bash
-grep -l "^status: in-progress" ~/.claude/plans/[0-9][0-9][0-9]-*.md
+grep -l "^status: in-progress" ~/.cursor/plans/[0-9][0-9][0-9]-*.md
 ```
 
 Для каждого — прочитать frontmatter (`project`, `branch`, `base_branch`,

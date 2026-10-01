@@ -13,6 +13,11 @@ import sys
 FORCE = re.compile(r"(?:--force(?:-with-lease)?|(?:^|\s)-f)(?:\s|$)")
 SHARED = re.compile(r"(?:^|[\s:/])(main|master|develop)(?:\s|$)")
 RM = re.compile(r"(?:^|[;&|]\s*)rm\s+-[a-zA-Z]*r[a-zA-Z]*f\S*\s+(\./|~/|/|~|C:\\)", re.I)
+RESET_HARD = re.compile(r"(?:^|[;&|]\s*)git\s+reset\s+--hard\b", re.I)
+GIT_CLEAN = re.compile(r"(?:^|[;&|]\s*)git\s+clean\b", re.I)
+REMOVE = re.compile(r"Remove-Item\b", re.I)
+REMOVE_RECURSE = re.compile(r"-(?:Recurse|r)\b", re.I)
+REMOVE_ROOT = re.compile(r"(?:^|[\s'\"])(\./|\.\\|~/|/|~|C:\\)")
 DOCKER = re.compile(
     r"docker\s+volume\s+(?:rm|prune)|docker\s+system\s+prune|"
     r"docker\s+compose\s+down\b[^\n]*\s-v\b|docker\s+compose\s+down\s+--volumes",
@@ -39,8 +44,13 @@ def main() -> int:
     if FORCE.search(command) and SHARED.search(command):
         emit("deny", "Force-push в main, master или develop запрещён.")
         return 0
-    if RM.search(command):
+    if RM.search(command) or (
+            REMOVE.search(command) and REMOVE_RECURSE.search(command)
+            and REMOVE_ROOT.search(command)):
         emit("deny", "Рекурсивное удаление от корня или домашнего каталога запрещено.")
+        return 0
+    if RESET_HARD.search(command) or GIT_CLEAN.search(command):
+        emit("ask", "git reset --hard и git clean сносят незакоммиченное — нужно подтверждение.")
         return 0
     if DOCKER.search(command):
         emit("deny", "Удаление томов и данных docker запрещено без отдельного решения.")

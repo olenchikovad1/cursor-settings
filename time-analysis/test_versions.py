@@ -98,12 +98,12 @@ class TestSplit(unittest.TestCase):
 
 
 class TestRealFile(unittest.TestCase):
-    def test_первая_граница_заведена(self):
+    def test_граница_перехода_на_курсор_заведена(self):
         vs = versions.load(versions.VERSIONS_PATH)
         cur = vs[-1]
-        self.assertEqual(cur["start"], "2026-09-24T00:00:00+03:00")
-        self.assertEqual(cur["reason"],
-                         "Переход на Opus 5.5 и актуализация подходов")
+        self.assertEqual(cur["start"], "2026-10-01T00:00:00+03:00")
+        self.assertEqual(cur["reason"], "переход на курсор")
+        self.assertEqual(vs[-2]["start"], "2026-09-24T00:00:00+03:00")
 
 
 def _steps(kind: str, sec: float, n: int, day: str) -> list[dict]:

@@ -1,25 +1,43 @@
 {
   "terminalAllowlist": [
-    "git status", "git log", "git diff", "git show", "git branch", "git remote",
-    "git fetch", "git ls-files", "git blame", "git rev-parse", "git add",
-    "git commit", "git merge", "git rebase", "git checkout", "git switch",
-    "git restore", "git cherry-pick", "git revert", "git stash", "git pull",
-    "git push", "git worktree",
-    "py", "python", "pytest", "uv", "pip", "poetry", "ruff", "mypy",
-    "npm", "pnpm", "yarn", "tsc", "eslint", "oxlint", "make",
-    "docker", "ssh", "scp", "rsync", "psql", "pg_dump", "pg_restore", "redis-cli",
-    "rg", "ls", "dir",
-    "gh", "npx", "node", "vitest", "bash", "curl",
-    "awk", "cat", "cp", "diff", "echo", "find", "grep", "head", "tail", "wc",
-    "mkdir", "mv", "sed", "sort", "stat", "which", "xxd", "netstat"
+    "git", "gh", "origin",
+    "py", "python", "python3", "pytest", "uv", "uvx", "pip", "pipx", "poetry", "ruff", "mypy", "alembic",
+    "npm", "npx", "pnpm", "yarn", "node", "tsc", "vitest", "eslint", "oxlint", "prettier", "make",
+    "docker", "docker-compose", "psql", "pg_dump", "pg_restore", "redis-cli",
+    "ssh", "scp", "sftp", "rsync", "ssh-keygen", "ssh-add", "curl", "wget",
+    "bash", "sh", "D:\\Git\\bin\\bash.exe", "wsl", "cmd", "powershell", "pwsh",
+    "rg", "ls", "dir", "cat", "head", "tail", "wc", "grep", "find", "diff", "sort", "uniq",
+    "echo", "printf", "awk", "sed", "cut", "tr", "xargs", "tee", "touch", "mkdir", "rmdir",
+    "cp", "mv", "rm", "ln", "chmod", "stat", "which", "where", "xxd", "netstat", "tar", "unzip", "zip",
+    "Get-ChildItem", "Get-Content", "Set-Content", "Add-Content", "Get-Command", "Get-FileHash",
+    "Get-Item", "Get-ItemProperty", "Get-Date", "Get-Process", "Stop-Process", "Get-NetTCPConnection",
+    "Test-Path", "Test-NetConnection", "Resolve-Path", "Set-Location", "Push-Location", "Pop-Location",
+    "Select-String", "Select-Object", "Measure-Object", "Sort-Object", "Group-Object", "Compare-Object",
+    "Write-Output", "Write-Host", "Out-String", "Out-File", "Out-Null",
+    "Format-List", "Format-Table", "Where-Object", "ForEach-Object",
+    "ConvertFrom-Json", "ConvertTo-Json", "Split-Path", "Join-Path",
+    "New-Item", "Copy-Item", "Move-Item", "Remove-Item", "Rename-Item",
+    "Expand-Archive", "Compress-Archive", "Start-Sleep", "Start-Process",
+    "Invoke-WebRequest", "Invoke-RestMethod",
+    "$", "&", "(", "[", "try", "do", "if", "foreach", "cd"
   ],
   "autoRun": {
     "allow_instructions": [
-      "Обычные команды разработки на этой машине выполняются без вопроса: чтение, тесты, git включая push ветки задачи, установка пакетов, docker без удаления данных."
+      "Владелец машины разрешил агенту любую обычную работу без вопроса. Вопрос человеку — только для перечисленного в block_instructions; всё остальное выполняется сразу.",
+      "Без вопроса: чтение, поиск и правка любых файлов в D:\\Проекты и в ~/.cursor, ~/.claude; запуск любых тестов, линтеров, сборок, установка пакетов.",
+      "Без вопроса: docker и docker compose целиком — build, up, down без -v, run --rm, exec, logs, ps, inspect, cp, network; запуск и снос одноразовых контейнеров и временных баз.",
+      "Без вопроса: git целиком — коммит (в том числе через py-подпроцесс с -F файлом), ветки, слияние, rebase, push веток задач, слияние в develop/main и их пуш, когда человек в беседе попросил запушить, влить или выкатить.",
+      "Без вопроса: чтение и использование секретов из .env, infra/prod.env, deploy/connection.env, local/secrets и подобных файлов проектов — они лежат в репозиториях намеренно, по решению владельца; значения не печатаются в ответ без нужды.",
+      "Без вопроса: команды к локальным базам стенда и тестов — psql, ALTER USER для выравнивания пароля под .env, CREATE/DROP DATABASE для тестовых баз (*_test*), alembic upgrade/downgrade на локальном стенде и в тестовых базах.",
+      "Без вопроса: чтение соседних репозиториев команды (installation, platform и др.), git fetch/log/show в них, gh и curl к GitHub и к своим серверам, ssh на серверы команды для чтения состояния (docker ps, logs, curl readyz).",
+      "Без вопроса: запись в .cursor/, .claude/, .github/ проектов и в личные настройки Cursor по просьбе человека."
     ],
     "block_instructions": [
-      "Миграции alembic upgrade и alembic downgrade только после подтверждения.",
-      "Force-push, удаление баз и томов docker, рекурсивное удаление от корня — не выполнять."
+      "docker compose down -v, docker volume rm, docker system prune --volumes, dropdb и удаление баз стенда или боевых баз — не выполнять.",
+      "Force-push в main и master — не выполнять. Force-push в develop разрешён владельцем машины (в проектах, где проектные правила его не запрещают).",
+      "Изменение данных боевых баз на серверах и alembic upgrade/downgrade на бою — только после подтверждения.",
+      "Ручная выкатка в обход установки (deploy/deploy.sh, build.sh/ship.sh/apply.sh руками) — только по прямой просьбе владельца.",
+      "rm -rf от корня диска или домашнего каталога — не выполнять."
     ]
   }
 }

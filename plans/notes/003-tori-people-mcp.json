@@ -1,0 +1,495 @@
+{
+  "source": "https://hr.toribrands.ru/mcp",
+  "taken": "2026-09-25",
+  "protocolVersion_answered": "2024-11-05",
+  "serverInfo": {
+    "name": "tori-people",
+    "version": "1.0.0"
+  },
+  "tools": [
+    {
+      "name": "overview",
+      "description": "Сводка Tori People: сотрудники, вакансии, отклики, СУ, hh.ru. payments_new — новые заявки; payments_month — сумма счетов за текущий месяц без отказов; birthdays_upcoming — ближайшие ДР (31 день, дата рождения есть в карточке сотрудника)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "search_employees",
+      "description": "Поиск сотрудников (без уволенных). q — ФИО/должность/телефон, department — отдел. В ответе есть birth_date",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_employee",
+      "description": "Карточка сотрудника по id (без паспорта и зарплаты). Есть birth_date",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "employee_id"
+        ]
+      }
+    },
+    {
+      "name": "list_vacancies",
+      "description": "Список вакансий. status: open|draft|closed|archived|all",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_vacancy",
+      "description": "Вакансия и её заявки по id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "vacancy_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vacancy_id"
+        ]
+      }
+    },
+    {
+      "name": "list_applications",
+      "description": "Заявки кандидатов. Можно фильтр q, status, vacancy_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "vacancy_id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_application",
+      "description": "Карточка заявки кандидата (без полного текста резюме)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "application_id"
+        ]
+      }
+    },
+    {
+      "name": "search_persons",
+      "description": "Поиск в базе людей (talent pool)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_person",
+      "description": "Профиль человека в базе и его заявки",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "person_id"
+        ]
+      }
+    },
+    {
+      "name": "list_payments",
+      "description": "Счета (invoice) или договоры (contract). status: new|in_progress|paid|rejected. year и month — только заявки за календарный месяц",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer"
+          },
+          "month": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "name": "payments_month_totals",
+      "description": "Суммы счетов или договоров по отделам за месяц. Без year/month — текущий месяц. Отказы не входят",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "invoice",
+              "contract"
+            ]
+          },
+          "year": {
+            "type": "integer"
+          },
+          "month": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "name": "payment_create",
+      "description": "Создать заявку бухгалтеру и поставить карточку в очередь чата. kind: invoice (счёт) или contract (договор). Сотрудник — employee_id или employee_name. payer: bobrovskaya (ИП Бобровская) или tori (ООО ТОРИ БРЭНДС). Для счёта обязательны amount, vendor, purpose. Для договора — vendor, purpose; org_contacts по желанию. Файл через MCP не прикладывается.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "invoice",
+              "contract"
+            ]
+          },
+          "employee_id": {
+            "type": "integer"
+          },
+          "employee_name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "currency": {
+            "type": "string"
+          },
+          "payer": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "org_contacts": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "payer",
+          "vendor",
+          "purpose"
+        ]
+      }
+    },
+    {
+      "name": "board_status",
+      "description": "Текущий или ближайший Совет управления и открытая повестка",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "agenda_create",
+      "description": "Создать вопрос в повестке СУ. Обязателен title. Инициатор и лидер — по id или ФИО. С лидером вопрос сразу в бэклог, без лидера — предложение.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Высокий",
+              "Средний",
+              "Низкий"
+            ]
+          },
+          "theme": {
+            "type": "string"
+          },
+          "initiator_id": {
+            "type": "integer"
+          },
+          "initiator_name": {
+            "type": "string"
+          },
+          "leader_id": {
+            "type": "integer"
+          },
+          "leader_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      }
+    },
+    {
+      "name": "agenda_update",
+      "description": "Изменить вопрос повестки СУ по item_id: формулировка, описание, приоритет, тема, инициатор, лидер. Если назначен лидер у предложения — оно переходит в бэклог.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Высокий",
+              "Средний",
+              "Низкий"
+            ]
+          },
+          "theme": {
+            "type": "string"
+          },
+          "initiator_id": {
+            "type": "integer"
+          },
+          "initiator_name": {
+            "type": "string"
+          },
+          "leader_id": {
+            "type": "integer"
+          },
+          "leader_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id"
+        ]
+      }
+    },
+    {
+      "name": "hh_status",
+      "description": "Статус интеграции hh.ru без секретов и токенов",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "list_employee_reviews",
+      "description": "Оценки сотрудника: текущий performance review, eNPS, 1-on-1. Истории оценок в БД нет — поля карточки. employee_id или employee_name",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          },
+          "employee_name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_adizes",
+      "description": "Результат теста Адизеса (PAEI): профиль, баллы, доминанта, легенда",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          },
+          "employee_name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "list_documents",
+      "description": "Метаданные файлов: payment (счета/договоры), resume (резюме), folder (ссылка папки сотрудника, без скачивания). kind: all|payment|resume|folder",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "integer"
+          },
+          "employee_name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_document",
+      "description": "Скачать файл (base64). Обязателен telegram_id из allowlist (MCP_TELEGRAM_IDS / настройка mcp_telegram_ids). Каждая попытка пишется в журнал. ref: payment:12 или resume:5. Не больше 4 МБ",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "telegram_id": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "payment",
+              "resume"
+            ]
+          },
+          "id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "telegram_id"
+        ]
+      }
+    },
+    {
+      "name": "search_fired",
+      "description": "Поиск уволенных. q — ФИО/должность/телефон, department — отдел",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "employment_history",
+      "description": "Текущие даты приёма/увольнения и журнал изменений карточки. employee_id или employee_name",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          },
+          "employee_name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "list_board_members",
+      "description": "Официальный состав СУ: члены (management_board) и наблюдатели. Без уволенных",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_agenda_item",
+      "description": "Полный вопрос повестки: описание, решение, голоса, комментарии, исполнители, инициатор/лидер. item_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "item_id"
+        ]
+      }
+    },
+    {
+      "name": "telegram_access_check",
+      "description": "Проверить, есть ли telegram_id в allowlist для скачивания документов. Не возвращает сам список ID",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "telegram_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "telegram_id"
+        ]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "tori://overview",
+      "name": "overview",
+      "description": "Сводка портала",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "tori://vacancies/open",
+      "name": "open_vacancies",
+      "description": "Открытые вакансии",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "tori://board/members",
+      "name": "board_members",
+      "description": "Официальный состав Совета управления",
+      "mimeType": "application/json"
+    }
+  ]
+}

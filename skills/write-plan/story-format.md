@@ -17,7 +17,7 @@
 
 ## Формат
 
-Шаблон — `~/.claude/plans/_TEMPLATE.md`. Структуру держит валидатор
+Шаблон — `~/.cursor/plans/_TEMPLATE.md`. Структуру держит валидатор
 (`hooks/lint_plan.py`), он же висит на `PostToolUse` и вернёт замечания сразу.
 
 ```markdown

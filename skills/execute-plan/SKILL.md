@@ -1,7 +1,7 @@
 ---
 name: execute-plan
 description: >-
-  Execute a numbered plan from ~/.claude/plans/NNN-*.md end-to-end in THIS
+  Execute a numbered plan from ~/.cursor/plans/NNN-*.md end-to-end in THIS
   terminal session (no subagents/Workflow) — resolve the project by name,
   create a branch in its main working copy, implement (TDD for real code),
   commit as you go, run real tests, merge into the plan's base branch, keep
@@ -40,8 +40,9 @@ description: >-
 
 ### План, проект и ветка → [setup.md](setup.md)
 
-- **План ищется глобом по номеру** в `~/.cursor/plans/`, затем в
-  `~/.claude/plans/` (тот только читается). Новые записи плана — в `~/.cursor/plans/`.
+- **План ищется глобом по номеру только в `~/.cursor/plans/`.** В
+  `~/.claude/plans/` номера другие: «план 81» оттуда — это файл здесь с
+  `migrated_from: "claude/081"` в шапке (сейчас `004`).
 - **Путь к проекту вычислять нельзя** — только через резолвер: на разных
   машинах он разный.
 - **`depends_on` проверяется до начала:** названный план не закрыт — сказать и

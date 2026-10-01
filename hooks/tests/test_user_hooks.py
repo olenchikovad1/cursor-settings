@@ -31,6 +31,20 @@ class Guard(unittest.TestCase):
         answer = run("guard_destructive.py", {"command": "git push -u origin HEAD"})
         self.assertEqual(answer["permission"], "allow")
 
+    def test_сброс_файла_разрешён_а_жёсткий_спрашивает(self) -> None:
+        soft = run("guard_destructive.py", {"command": "git reset -q -- CLAUDE.md"})
+        self.assertEqual(soft["permission"], "allow")
+        hard = run("guard_destructive.py", {"command": "git reset --hard HEAD"})
+        self.assertEqual(hard["permission"], "ask")
+
+    def test_удаление_временного_разрешено_а_от_корня_нет(self) -> None:
+        tmp = run("guard_destructive.py",
+                  {"command": "Remove-Item -Recurse -Force .\\tmp"})
+        self.assertEqual(tmp["permission"], "allow")
+        root = run("guard_destructive.py",
+                   {"command": "Remove-Item -Recurse C:\\"})
+        self.assertEqual(root["permission"], "deny")
+
 
 class Compact(unittest.TestCase):
     def test_второе_сжатие_зовёт_новый_чат(self) -> None:
