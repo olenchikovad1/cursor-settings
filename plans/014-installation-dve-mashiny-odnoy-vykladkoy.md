@@ -86,7 +86,11 @@ sandbox одним тегом — иначе мне придётся выкат�
 
 Контракт «Докроя» уже содержит таблицу `[unit.targets.sandbox]` с полями
 `connection`, `secrets`, `ship`, `apply`, `rollback`, `ready`,
-`ready_network`, `images`, `archives`, `transport`. Все команды — в тех же
+`ready_network`, `images`, `archives`, `transport`. У sandbox
+`ready_network = "host"` и `ready = "http://127.0.0.1:8001/readyz"`:
+прослойка там в сети хоста (системный Postgres слушает только localhost),
+проверка готовности должна запускаться в `--network host`, а не в сети
+compose (уточнено 01.10.2026, `develop` `525d28a`). Все команды — в тех же
 соглашениях, что у главной машины: `ship` выполняется у выкатывающего из
 корня клона, `apply` и `ready` — на машине по ssh в каталоге единицы
 (`DEPLOY_PATH` файла подключения; у прослойки — `/opt/docroi-layer`).
