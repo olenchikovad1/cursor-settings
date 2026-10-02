@@ -46,8 +46,8 @@ REMINDER = (
 # руками и успели отстать — на 15.09.2026 пять видов из 22 расходились с
 # журналом больше чем в полтора раза, «линт и типы» втрое. Журнал пополняется
 # сам, поэтому устареть не может. Файлы эталонов остаются запасным путём.
-JOURNAL_PATH = Path.home() / "\.cursor" / "time-analysis" / "records" / "steps.jsonl"
-REFS_DIR = Path.home() / "\.cursor" / "references" / "steps"
+JOURNAL_PATH = Path.home() / ".cursor" / "time-analysis" / "records" / "steps.jsonl"
+REFS_DIR = Path.home() / ".cursor" / "references" / "steps"
 _FRONTMATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 
 # Ниже этого числа замеров медиана — шум, а не эталон: два случая «веб-разведки»
@@ -161,7 +161,7 @@ def version_drift_prompt() -> str:
     086). Хук только сообщает, что серия набрана; спрашивает сессия карточкой,
     а версию заводит ответ владельца."""
     import sys
-    ta = str(Path.home() / "\.cursor" / "time-analysis")
+    ta = str(Path.home() / ".cursor" / "time-analysis")
     if ta not in sys.path:
         sys.path.insert(0, ta)
     import calibrate
