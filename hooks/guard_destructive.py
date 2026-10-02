@@ -12,12 +12,15 @@ import sys
 
 FORCE = re.compile(r"(?:--force(?:-with-lease)?|(?:^|\s)-f)(?:\s|$)")
 SHARED = re.compile(r"(?:^|[\s:/])(main|master|develop)(?:\s|$)")
-RM = re.compile(r"(?:^|[;&|]\s*)rm\s+-[a-zA-Z]*r[a-zA-Z]*f\S*\s+(\./|~/|/|~|C:\\)", re.I)
+# `./` и `.\` — корень только сами по себе: `rm -rf ./tmp` — обычная уборка,
+# и до 02.10.2026 она запрещалась наравне с `rm -rf /`.
+RM = re.compile(r"(?:^|[;&|]\s*)rm\s+-[a-zA-Z]*r[a-zA-Z]*f\S*\s+"
+                r"(\./(?=[\s'\"]|$)|~/|/|~|C:\\)", re.I)
 RESET_HARD = re.compile(r"(?:^|[;&|]\s*)git\s+reset\s+--hard\b", re.I)
 GIT_CLEAN = re.compile(r"(?:^|[;&|]\s*)git\s+clean\b", re.I)
 REMOVE = re.compile(r"Remove-Item\b", re.I)
 REMOVE_RECURSE = re.compile(r"-(?:Recurse|r)\b", re.I)
-REMOVE_ROOT = re.compile(r"(?:^|[\s'\"])(\./|\.\\|~/|/|~|C:\\)")
+REMOVE_ROOT = re.compile(r"(?:^|[\s'\"])(\./(?=[\s'\"]|$)|\.\\(?=[\s'\"]|$)|~/|/|~|C:\\)")
 DOCKER = re.compile(
     r"docker\s+volume\s+(?:rm|prune)|docker\s+system\s+prune|"
     r"docker\s+compose\s+down\b[^\n]*\s-v\b|docker\s+compose\s+down\s+--volumes",
@@ -36,7 +39,9 @@ def emit(permission: str, message: str = "") -> None:
 
 def main() -> int:
     try:
-        request = json.loads(sys.stdin.buffer.read().decode("utf-8") or "{}")
+        # utf-8-sig: Cursor на Windows подаёт JSON с BOM; с чистым utf-8 разбор
+        # падал, и предохранитель молча разрешал всё подряд.
+        request = json.loads(sys.stdin.buffer.read().decode("utf-8-sig") or "{}")
     except (ValueError, UnicodeError):
         emit("allow")
         return 0

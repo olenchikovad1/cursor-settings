@@ -9,13 +9,43 @@ from pathlib import Path
 HOOKS = Path(__file__).resolve().parent.parent
 
 
-def run(script: str, payload: dict, *args: str) -> dict:
+def run(script: str, payload: dict, *args: str, bom: bool = False) -> dict:
     env = {**os.environ, "USERPROFILE": os.environ["USERPROFILE"]}
+    # Cursor на Windows подаёт JSON с UTF-8 BOM (EF BB BF). Хук, читающий
+    # stdin как чистый utf-8, получает ошибку разбора и пустой запрос.
+    raw = json.dumps(payload).encode("utf-8")
+    if bom:
+        raw = b"\xef\xbb\xbf" + raw
     p = subprocess.run(
         [sys.executable, "-X", "utf8", str(HOOKS / script), *args],
-        input=json.dumps(payload), capture_output=True, text=True, encoding="utf-8", env=env)
-    assert p.returncode == 0, p.stderr
-    return json.loads(p.stdout)
+        input=raw, capture_output=True, env=env)
+    assert p.returncode == 0, p.stderr.decode("utf-8", "replace")
+    return json.loads(p.stdout.decode("utf-8"))
+
+
+class Bom(unittest.TestCase):
+    """Запрос с BOM обязан разбираться так же, как без него: 02.10.2026 из-за
+    BOM предохранитель всё разрешал, а журнал шагов не пополнялся вовсе."""
+
+    def test_guard_читает_запрос_с_bom(self) -> None:
+        answer = run("guard_destructive.py",
+                     {"command": "git push --force origin main"}, bom=True)
+        self.assertEqual(answer["permission"], "deny")
+
+    def test_compact_читает_запрос_с_bom(self) -> None:
+        answer = run("compact_hint.py", {"is_first_compaction": False}, bom=True)
+        self.assertIn("Новый чат", answer["user_message"])
+
+    def test_time_estimate_пишет_состояние_хода_с_bom(self) -> None:
+        turn = Path.home() / ".cursor" / "time-analysis" / "turns" / "t-bom.json"
+        turn.unlink(missing_ok=True)
+        try:
+            run("time_estimate.py",
+                {"conversation_id": "t-bom", "generation_id": "g"},
+                "beforeSubmitPrompt", bom=True)
+            self.assertTrue(turn.is_file(), "состояние хода не записано — запрос не разобран")
+        finally:
+            turn.unlink(missing_ok=True)
 
 
 class Guard(unittest.TestCase):

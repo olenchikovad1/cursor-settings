@@ -11,7 +11,8 @@ import sys
 
 def main() -> int:
     try:
-        request = json.loads(sys.stdin.buffer.read().decode("utf-8") or "{}")
+        # utf-8-sig: Cursor на Windows подаёт JSON с BOM.
+        request = json.loads(sys.stdin.buffer.read().decode("utf-8-sig") or "{}")
     except (ValueError, UnicodeError):
         request = {}
     if request.get("is_first_compaction", True):

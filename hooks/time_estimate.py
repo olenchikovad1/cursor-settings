@@ -30,7 +30,9 @@ def read_request() -> dict:
     if not raw.strip():
         return {}
     try:
-        return json.loads(raw.decode("utf-8"))
+        # utf-8-sig, а не utf-8: Cursor на Windows подаёт JSON с BOM, и чистый
+        # utf-8 даёт ошибку разбора — запрос пустой, ход не меряется вовсе.
+        return json.loads(raw.decode("utf-8-sig"))
     except (ValueError, UnicodeError):
         return {}
 

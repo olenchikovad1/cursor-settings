@@ -604,8 +604,10 @@ def main() -> int:
 
     if a.hook:
         try:
-            payload = json.load(sys.stdin)
-        except (ValueError, OSError):
+            # utf-8-sig: Cursor на Windows подаёт JSON с BOM, и json.load по
+            # текстовому stdin падал — валидатор в режиме хука не запускался.
+            payload = json.loads(sys.stdin.buffer.read().decode("utf-8-sig"))
+        except (ValueError, OSError, UnicodeError):
             return 0
         reports = [
             lint_file(path)
