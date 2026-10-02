@@ -1,9 +1,9 @@
 ---
 project: docroi
 epic: docroi
-status: draft
+status: in-progress
 base_branch: develop
-branch: null
+branch: task/demand-wave-factories
 depends_on: [012]
 created: 2026-10-01
 stories: 10

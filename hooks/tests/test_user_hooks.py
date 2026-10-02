@@ -106,6 +106,90 @@ class Time(unittest.TestCase):
                        "stop")
             self.assertIn("без строки оценки", stop.get("followup_message", ""))
 
+    def test_оценка_из_транскрипта_видна(self) -> None:
+        """afterAgentResponse отдаёт только итоговое сообщение хода; строки
+        оценки перед вызовами лежат в транскрипте Cursor."""
+        cid = "t-tr"
+        tdir = (Path.home() / ".cursor" / "projects" / "t-hook-proj"
+                / "agent-transcripts" / cid)
+        tdir.mkdir(parents=True, exist_ok=True)
+        (tdir / f"{cid}.jsonl").write_text("\n".join(json.dumps(e, ensure_ascii=False) for e in [
+            {"role": "user", "message": {"content": [{"type": "text", "text": "сделай"}]}},
+            {"role": "assistant", "message": {"content": [
+                {"type": "text", "text": "Читаю хук — ~20 сек (чтение×1)."},
+                {"type": "tool_use", "name": "Read", "input": {}}]}},
+        ]) + "\n", encoding="utf-8")
+        turn = Path.home() / ".cursor" / "time-analysis" / "turns" / f"{cid}.json"
+        try:
+            run("time_estimate.py", {"conversation_id": cid, "generation_id": "g"},
+                "beforeSubmitPrompt")
+            run("time_estimate.py", {"conversation_id": cid, "tool_name": "Read",
+                                     "tool_input": {}}, "postToolUse")
+            run("time_estimate.py", {"conversation_id": cid, "text": "Готово."},
+                "afterAgentResponse")
+            stop = run("time_estimate.py", {"conversation_id": cid, "status": "completed",
+                                            "loop_count": 0}, "stop")
+            self.assertNotIn("без строки оценки", stop.get("followup_message", ""))
+        finally:
+            turn.unlink(missing_ok=True)
+            import shutil
+            shutil.rmtree(tdir.parent.parent, ignore_errors=True)
+
+    def test_оценка_в_тексте_с_битой_кодировкой_видна(self) -> None:
+        """02.10.2026 Cursor отдавал текст ответа как UTF-8, прочитанный в
+        cp1251 («РџСЂРёРЅСЏС‚Рѕ»), и строка оценки не находилась никогда."""
+        good = "Иду в хук — ~20 сек (чтение×1)."
+        broken = "".join(
+            bytes([b]).decode("cp1251", errors="replace")
+            if bytes([b]).decode("cp1251", errors="replace") != "\ufffd" else chr(b)
+            for b in good.encode("utf-8"))
+        turn = Path.home() / ".cursor" / "time-analysis" / "turns" / "t-moji.json"
+        turn.unlink(missing_ok=True)
+        try:
+            run("time_estimate.py",
+                {"conversation_id": "t-moji", "generation_id": "g"},
+                "beforeSubmitPrompt")
+            run("time_estimate.py",
+                {"conversation_id": "t-moji", "tool_name": "Read", "tool_input": {}},
+                "postToolUse")
+            run("time_estimate.py",
+                {"conversation_id": "t-moji", "text": broken},
+                "afterAgentResponse")
+            saved = json.loads(turn.read_text(encoding="utf-8"))["text"]
+            self.assertEqual(saved, good)
+            stop = run("time_estimate.py",
+                       {"conversation_id": "t-moji", "status": "completed", "loop_count": 0},
+                       "stop")
+            self.assertNotIn("без строки оценки", stop.get("followup_message", ""))
+        finally:
+            turn.unlink(missing_ok=True)
+
+    def test_ранняя_оценка_не_затирается_поздним_абзацем(self) -> None:
+        """afterAgentResponse приходит кусками. Итог хода без строки оценки
+        не должен стирать кусок, где оценка уже была."""
+        turn = Path.home() / ".cursor" / "time-analysis" / "turns" / "t-frag.json"
+        turn.unlink(missing_ok=True)
+        try:
+            run("time_estimate.py",
+                {"conversation_id": "t-frag", "generation_id": "g"},
+                "beforeSubmitPrompt")
+            run("time_estimate.py",
+                {"conversation_id": "t-frag",
+                 "text": "Читаю хук — ~20 сек (чтение×1)."},
+                "afterAgentResponse")
+            run("time_estimate.py",
+                {"conversation_id": "t-frag", "tool_name": "Read", "tool_input": {}},
+                "postToolUse")
+            run("time_estimate.py",
+                {"conversation_id": "t-frag", "text": "В хуке текст ответа затирается."},
+                "afterAgentResponse")
+            stop = run("time_estimate.py",
+                       {"conversation_id": "t-frag", "status": "completed", "loop_count": 0},
+                       "stop")
+            self.assertNotIn("без строки оценки", stop.get("followup_message", ""))
+        finally:
+            turn.unlink(missing_ok=True)
+
 
 class ClaudeUntouched(unittest.TestCase):
     def test_версия_клода_не_сдвинулась(self) -> None:

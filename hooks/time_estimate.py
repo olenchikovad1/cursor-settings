@@ -89,10 +89,51 @@ def on_prompt(request: dict) -> dict:
     return out
 
 
+def fix_mojibake(text: str) -> str:
+    """Вернуть русский текст, который Cursor отдал как UTF-8, прочитанный в cp1251.
+
+    02.10.2026 текст ответа приходил в хук так («РџСЂРёРЅСЏС‚Рѕ» вместо
+    «Принято»), и «сек»/«мин» в нём не находились — каждый ход считался ходом
+    без оценки. Байт, которого в cp1251 нет (0x98 в «И»), приходит символом с
+    тем же кодом. Нормальный русский текст обратно в UTF-8 не собирается, и
+    тогда он остаётся как был.
+    """
+    out = bytearray()
+    for ch in text:
+        try:
+            out += ch.encode("cp1251")
+        except UnicodeEncodeError:
+            if ord(ch) > 0xFF:
+                return text
+            out.append(ord(ch))
+    try:
+        return out.decode("utf-8")
+    except UnicodeDecodeError:
+        return text
+
+
+def merge_text(old: str, new: str) -> str:
+    """Склеить куски ответа одного хода.
+
+    afterAgentResponse приходит на каждый фрагмент текста, а не один раз на
+    весь ответ. Замена затирала строку оценки, если она была в раннем куске,
+    а последний абзац её уже не содержал. Полный снимок (новый текст начинается
+    со старого) заменяет, повтор того же куска не дублируется.
+    """
+    if not new:
+        return old
+    if not old or new.startswith(old):
+        return new
+    if old.endswith(new) or new in old:
+        return old
+    return old + "\n" + new
+
+
 def on_text(request: dict) -> dict:
     path = state_path(request)
     state = load(path)
-    state["text"] = request.get("text") or ""
+    state["text"] = merge_text(state.get("text") or "",
+                               fix_mojibake(request.get("text") or ""))
     save(path, state)
     return {}
 
@@ -149,6 +190,47 @@ def announcement_lines(text: str) -> list[str]:
     return lines
 
 
+TRANSCRIPTS = Path.home() / ".cursor" / "projects"
+
+
+def transcript_turn_text(cid: str) -> str | None:
+    """Текст ассистента в последнем ходе по транскрипту Cursor.
+
+    afterAgentResponse отдаёт только итоговое сообщение хода, а строки оценки
+    стоят перед вызовами инструментов — в промежуточных сообщениях. Они есть
+    только в транскрипте. None — транскрипта нет вовсе; "" — транскрипт есть,
+    но текущий ход в него ещё не записан, и проверять нечего.
+    """
+    if not cid:
+        return None
+    files = list(TRANSCRIPTS.glob(f"*/agent-transcripts/{cid}/{cid}.jsonl"))
+    files += list(TRANSCRIPTS.glob(f"*/agent-transcripts/{cid}.jsonl"))
+    if not files:
+        return None
+    try:
+        rows = files[0].read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return None
+    texts: list[str] = []
+    for row in rows:
+        try:
+            entry = json.loads(row)
+        except ValueError:
+            continue
+        role = entry.get("role") or entry.get("type")
+        if role == "user":
+            texts = []
+            continue
+        if role != "assistant":
+            continue
+        content = (entry.get("message") or {}).get("content")
+        if isinstance(content, str):
+            texts.append(content)
+        elif isinstance(content, list):
+            texts += [b.get("text") or "" for b in content if b.get("type") == "text"]
+    return "\n".join(texts)
+
+
 def on_stop(request: dict) -> dict:
     if request.get("status") not in (None, "completed"):
         return {}
@@ -179,6 +261,7 @@ def on_stop(request: dict) -> dict:
                 "files_edited": sum(t.get("name") in EDIT for t in tools),
                 "commands": sum(t.get("name") == "Shell" for t in tools),
                 "model": "cursor",
+                "unit": "turn",
                 "phrase": (state.get("text") or "").strip().splitlines()[:1] or [""],
             }
             step["phrase"] = step["phrase"][0][:160]
@@ -186,10 +269,14 @@ def on_stop(request: dict) -> dict:
         except Exception:
             pass
     text = state.get("text") or ""
+    from_transcript = transcript_turn_text(
+        request.get("conversation_id") or request.get("session_id") or "")
     try:
         from _time_estimate_common import step_verdict
-        lines = announcement_lines(text)
+        lines = announcement_lines(text) + announcement_lines(from_transcript or "")
     except Exception:
+        return {}
+    if not lines and from_transcript == "":
         return {}
     if not lines:
         return {"followup_message": (

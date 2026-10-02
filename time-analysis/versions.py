@@ -183,6 +183,10 @@ def step_references(steps: list[dict], vs: list[dict]) -> dict:
     buckets: dict[str, dict[str, list[float]]] = {}
     for r in _dedup(steps):
         kind, sec = r.get("kind"), r.get("sec")
+        # Ход Cursor целиком — другая единица. В медиану шага он не входит:
+        # один такой замер двигает вид в разы.
+        if r.get("unit") == "turn":
+            continue
         if not kind or not isinstance(sec, (int, float)) or sec <= 0:
             continue
         n = record_version(r, vs)
@@ -260,11 +264,16 @@ MIN_SHELVES_FOR_COEFFICIENT = 3
 
 
 def shelf_references(fund: dict[float, tuple[float, float]], stories: list[dict],
-                     vs: list[dict]) -> dict:
+                     vs: list[dict], reject=None) -> dict:
     """Минуты и запас каждой полки SP и откуда они взяты.
 
     `fund` — {sp: (центр полки, полуширина)} в минутах, как его отдаёт
     calibrate.story_shelves. Источники те же, что у шагов.
+
+    `reject(story) -> причина | None` — тот же отбор, что у фонда
+    (`calibrate.shelf_rejection`): простой, оставленная на ночь сессия и
+    заблокированная история полку не двигают. Передаётся снаружи, потому что
+    правило живёт в calibrate, а calibrate импортирует этот модуль.
     """
     current, _ = active(vs)
     new: dict[float, list[float]] = {}
@@ -272,6 +281,8 @@ def shelf_references(fund: dict[float, tuple[float, float]], stories: list[dict]
         if (s.get("sized_by") != "comparison" or not s.get("actual_seconds")
                 or s.get("sp") is None or record_version(s, vs) != current
                 or len(vs) < 2):
+            continue
+        if reject is not None and reject(s):
             continue
         sp = float(s["sp"])
         if sp in fund:

@@ -911,6 +911,15 @@ class TestStepMode(unittest.TestCase):
         self.assertEqual(rec["effort"], "high")
         self.assertEqual(rec["session"], "abc")
 
+    def test_единица_хода_доезжает_до_записи(self):
+        import steps_store
+        rec = steps_store.to_record(
+            {"sec": 12.0, "kind": "чтение файлов", "started": "t", "host": "h",
+             "files_edited": 0, "files_created": 0, "commands": 0,
+             "model": "cursor", "unit": "turn"},
+            {"чтение файлов": {"id": "STEP-019"}})
+        self.assertEqual(rec["unit"], "turn")
+
     def test_запись_без_режима_не_несёт_пустых_полей(self):
         """Пустое поле — не то же, что отсутствие: в журнале различаем."""
         import steps_store

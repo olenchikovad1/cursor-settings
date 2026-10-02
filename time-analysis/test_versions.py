@@ -157,6 +157,15 @@ class TestStepBlend(unittest.TestCase):
         self.assertAlmostEqual(out["coefficient"], 0.8, places=2)
         self.assertIn("suite", out["excluded_kinds"])
 
+    def test_ход_целиком_в_эталон_шага_не_идёт(self):
+        """Замер Cursor — ход, а не шаг. Подмешанный в вид, он двигает медиану."""
+        rows = self._base() + [
+            {"kind": "a", "sec": 3600, "ts": f"{NEW}T12:00:00+00:00",
+             "host": "A", "unit": "turn"},
+        ]
+        out = versions.step_references(rows, self.vs)
+        self.assertEqual(out["kinds"]["a"]["n_new"], 20)
+
     def test_дубли_журнала_не_удваивают_выборку(self):
         rows = self._base()
         out = versions.step_references(rows + rows, self.vs)
@@ -199,6 +208,20 @@ class TestShelfBlend(unittest.TestCase):
         rows = _stories(2.0, 1.0, 20, sized_by="guess")
         out = versions.shelf_references(FUND, rows, self.vs)["shelves"][2.0]
         self.assertEqual(out["n_new"], 0)
+
+    def test_отбракованная_история_в_полку_не_идёт(self):
+        """Простой, оставленная на ночь сессия — не работа. 02.10.2026 одна
+        история в 583 минуты подняла полку 3 SP до 24 минут и утянула за
+        собой пятёрку; отбор тот же, что у shelf_rejection в calibrate."""
+        rows = _stories(3.0, 12.0, 1) + _stories(3.0, 583.0, 1)
+        plain = versions.shelf_references(FUND, rows, self.vs)["shelves"][3.0]
+        filtered = versions.shelf_references(
+            FUND, rows, self.vs,
+            reject=lambda s: s["actual_seconds"] > 4 * 3600)["shelves"][3.0]
+        self.assertEqual(plain["n_new"], 2)
+        self.assertEqual(filtered["n_new"], 1)
+        self.assertGreater(plain["minutes"], 60)
+        self.assertLess(filtered["minutes"], 20)
 
     def test_старые_истории_в_полку_не_идут_их_уже_держит_фонд(self):
         rows = _stories(2.0, 1.0, 20, day=OLD)

@@ -550,7 +550,10 @@ def shelf_versions(fund: dict[float, tuple[float, float]] | None = None) -> dict
         if len(vs) < 2:
             return None
         fund = fund if fund is not None else fund_shelves()
-        return versions.shelf_references(fund, read_state().get("stories", []), vs)
+        # Отбор тот же, что у полок фонда: иначе одна история, простоявшая
+        # открытой десять часов, задаёт полку новой версии.
+        return versions.shelf_references(fund, read_state().get("stories", []), vs,
+                                         reject=shelf_rejection)
     except Exception:
         return None
 
