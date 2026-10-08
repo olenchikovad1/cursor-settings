@@ -1,3 +1,7 @@
 *.md text eol=lf
 *.py text eol=lf
 *.json text eol=lf
+# Журнал калибровки append-only: при расхождении машин брать строки обеих
+# сторон. На ветке calibration файлы лежат как обычные; в master их нет.
+time-analysis/records/*.jsonl merge=union
+time-analysis/matrix.json merge=union

@@ -34,7 +34,7 @@ Claude Code; из него берут, в него не пишут.
 | Хуки и их настройка | `hooks/`, `hooks.json` | да |
 | Разрешения на команды | `permissions.json` | да |
 | Реестр проектов | `projects.d/`, резолвер `hooks/resolve_project.py` | да |
-| Эталоны и калибровка | `references/`, `time-analysis/` | да, кроме `matrix.json` и `records/` |
+| Эталоны и калибровка | `references/`, `time-analysis/` | код — в `master`; `matrix.json` и `records/` — ветка `calibration` |
 | Планы | `plans/` | да |
 | Пути на этой машине, роль | `local.json` (образец `local.example.json`) | **нет** |
 | SSH-хосты и логины | `infra_ssh_hosts.md` | **нет**, приносится руками |

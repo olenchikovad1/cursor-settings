@@ -162,6 +162,19 @@ def remote_exists(branch: str) -> bool:
     return rc == 0
 
 
+def sync_calibration(flag: str) -> None:
+    """Журнал замеров едет своей веткой, не через master."""
+    script = HOME / "hooks" / "sync_calibration.py"
+    if not script.is_file():
+        return
+    try:
+        subprocess.run([sys.executable, "-X", "utf8", str(script), flag],
+                       cwd=str(HOME), timeout=90,
+                       capture_output=True)
+    except (subprocess.TimeoutExpired, OSError) as e:
+        log(f"calib {flag}: {e}")
+
+
 def cmd_stop() -> int:
     if mid_operation():
         log("stop: пропуск, идёт операция")
@@ -169,6 +182,7 @@ def cmd_stop() -> int:
     if current_branch() != "master":
         log(f"stop: пропуск, ветка {current_branch()}")
         return 0
+    sync_calibration("--out")
     lease = False
     if has_changes():
         rc, _, err = git("add", "-A")
@@ -273,6 +287,7 @@ def cmd_session_start() -> int:
         print(f"  {err[:500]}")
         return 0
     promote_master()
+    sync_calibration("--in")
     if fetch_wips():
         report_foreign()
     return 0
@@ -330,6 +345,13 @@ def cmd_status() -> int:
     print(out)
     st = read_roll()
     print(f"катится: {st.get('sha', 'нет')[:8] if st.get('sha') else 'нет'}")
+    script = HOME / "hooks" / "sync_calibration.py"
+    if script.is_file():
+        try:
+            subprocess.run([sys.executable, "-X", "utf8", str(script), "--status"],
+                           cwd=str(HOME), timeout=60)
+        except (subprocess.TimeoutExpired, OSError):
+            pass
     return 0
 
 

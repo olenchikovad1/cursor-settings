@@ -10,10 +10,30 @@
 Скиллы, библиотека `project_skills`, хуки, `permissions.json`, эталоны
 `references`, планы, код калибровки.
 
-Не едет: чаты (`projects/`), встроенные скиллы приложения, кэш, `cli-config.json`,
-`local.json`, журнал замеров `time-analysis/records`. Журнал меняется каждый
-ход; отдельная ветка `calibration`, как у Claude, сюда ещё не перенесена, и
-замеры остаются на той машине, где сняты.
+Не едет в `master`: чаты (`projects/`), встроенные скиллы приложения, кэш,
+`cli-config.json`, `local.json`.
+
+Журнал замеров `time-analysis/records/` и `matrix.json` едут **отдельной
+веткой `calibration`**: на каждом `stop` — `--out`, на `sessionStart` —
+`--in`. Слияние — union строк, без force-push. Руками:
+
+```bash
+py -X utf8 ~/.cursor/hooks/sync_calibration.py --status
+py -X utf8 ~/.cursor/hooks/sync_calibration.py --in
+py -X utf8 ~/.cursor/hooks/sync_calibration.py --out
+```
+
+### Приватные проекты (не уезжают с машины)
+
+Как у Claude: папка сессии в `~/.cursor/projects/<slug>` — **junction** в
+`~/.my_claude/projects/...`. Реальные файлы лежат вне репозитория
+`~/.cursor`, автосинк их не видит. Планы таких проектов — только в
+`~/.my_claude/plans/` (каталог указан в машинном `local.json` как
+`extra_plans_dirs`, в git не входит). Писать их в `~/.cursor/plans/`
+запрещено: эта папка синхронизируется.
+
+Новый приватный slug Cursor: перенести содержимое в `~/.my_claude/...`,
+заменить папку junction'ом, до первой сессии с автосинком.
 
 ## Как устроены ветки
 

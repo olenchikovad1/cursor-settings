@@ -1,44 +1,9 @@
 {
-  // Владелец 01.10.2026: не спрашивать Run на обычную работу.
-  // Сопоставление — по началу команды. Сначала названы команды, которыми
-  // реально работаем; буквы, цифры и символы в конце — страховка для всего,
-  // что начинается иначе (пути к бинарникам, новые утилиты). Опасные
-  // исключения классификатор видит только в режиме Auto-review
-  // (block_instructions ниже); в режиме Allowlist их держат хуки.
-  "mcpAllowlist": [
-    "*:*"
-  ],
-  "terminalAllowlist": [
-    "git", "gh", "origin",
-    "py", "python", "python3", "pytest", "uv", "uvx", "pip", "pipx", "poetry", "ruff", "mypy", "alembic",
-    "npm", "npx", "pnpm", "yarn", "node", "tsc", "vitest", "eslint", "oxlint", "prettier", "make",
-    "docker", "docker-compose", "psql", "pg_dump", "pg_restore", "redis-cli",
-    "ssh", "scp", "sftp", "rsync", "ssh-keygen", "ssh-add", "curl", "wget",
-    "bash", "sh", "D:\\Git\\bin\\bash.exe", "wsl", "cmd", "powershell", "pwsh",
-    "rg", "ls", "dir", "cat", "head", "tail", "wc", "grep", "find", "diff", "sort", "uniq",
-    "echo", "printf", "awk", "sed", "cut", "tr", "xargs", "tee", "touch", "mkdir", "rmdir",
-    "cp", "mv", "rm", "ln", "chmod", "stat", "which", "where", "xxd", "netstat", "tar", "unzip", "zip",
-    "Get-ChildItem", "Get-Content", "Set-Content", "Add-Content", "Get-Command", "Get-FileHash",
-    "Get-Item", "Get-ItemProperty", "Get-Date", "Get-Process", "Stop-Process", "Get-NetTCPConnection",
-    "Test-Path", "Test-NetConnection", "Resolve-Path", "Set-Location", "Push-Location", "Pop-Location",
-    "Select-String", "Select-Object", "Measure-Object", "Sort-Object", "Group-Object", "Compare-Object",
-    "Write-Output", "Write-Host", "Out-String", "Out-File", "Out-Null",
-    "Format-List", "Format-Table", "Where-Object", "ForEach-Object",
-    "ConvertFrom-Json", "ConvertTo-Json", "Split-Path", "Join-Path",
-    "New-Item", "Copy-Item", "Move-Item", "Remove-Item", "Rename-Item",
-    "Expand-Archive", "Compress-Archive", "Start-Sleep", "Start-Process",
-    "Invoke-WebRequest", "Invoke-RestMethod",
-    "try", "do", "if", "foreach", "cd",
-
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-    "$", "&", "(", "[", "{", "@", "%", "~", "`", "\"", "'",
-    ".\\", "./", "..\\", "../", ".venv",
-    "C:\\", "D:\\", "E:\\"
-  ],
+  // 08.10.2026: terminalAllowlist и mcpAllowlist убраны — с ними Cursor
+  // серит пункт Run Everything в Settings (и Auto-review тоже). Полный
+  // список команд лежит в permissions.with-allowlists.bak.json.
+  // В режиме Run Everything allowlist не нужен. autoRun остаётся на случай
+  // Auto-review: классификатор читает только эти инструкции.
   "autoRun": {
     "allow_instructions": [
       "Владелец машины разрешил всё. Не спрашивать Run и не спрашивать повторно то, что уже разрешалось. Выполнять сразу любую команду разработки: чтение, поиск, правка, тесты, линтеры, сборки, установка пакетов, docker, git, ssh, gh, curl, psql, alembic.",
