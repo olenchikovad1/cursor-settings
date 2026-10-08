@@ -1,0 +1,1607 @@
+{
+  "matrix": {
+    "task": [
+      {
+        "range": "0-60s",
+        "min": 0,
+        "max": 60,
+        "factor": 1.118,
+        "n": 0,
+        "scale_n": 158
+      },
+      {
+        "range": "60-300s",
+        "min": 60,
+        "max": 300,
+        "factor": 2.831,
+        "n": 25,
+        "scale_n": 158
+      },
+      {
+        "range": "300-1200s",
+        "min": 300,
+        "max": 1200,
+        "factor": 0.71,
+        "n": 81,
+        "scale_n": 158
+      },
+      {
+        "range": "1200-3600s",
+        "min": 1200,
+        "max": 3600,
+        "factor": 0.473,
+        "n": 34,
+        "scale_n": 158
+      },
+      {
+        "range": "3600s+",
+        "min": 3600,
+        "max": null,
+        "factor": 1.62,
+        "n": 18,
+        "scale_n": 158
+      }
+    ],
+    "step": [
+      {
+        "range": "0-30s",
+        "min": 0,
+        "max": 30,
+        "factor": 0.758,
+        "n": 8,
+        "scale_n": 52
+      },
+      {
+        "range": "30-60s",
+        "min": 30,
+        "max": 60,
+        "factor": 0.779,
+        "n": 3,
+        "scale_n": 52
+      },
+      {
+        "range": "60-180s",
+        "min": 60,
+        "max": 180,
+        "factor": 0.86,
+        "n": 25,
+        "scale_n": 52
+      },
+      {
+        "range": "180-600s",
+        "min": 180,
+        "max": 600,
+        "factor": 1.392,
+        "n": 10,
+        "scale_n": 52
+      },
+      {
+        "range": "600s+",
+        "min": 600,
+        "max": null,
+        "factor": 0.472,
+        "n": 6,
+        "scale_n": 52
+      }
+    ],
+    "workflow": [
+      {
+        "range": "0-300s",
+        "min": 0,
+        "max": 300,
+        "factor": 1.654,
+        "n": 0,
+        "scale_n": 3
+      },
+      {
+        "range": "300-900s",
+        "min": 300,
+        "max": 900,
+        "factor": 1.971,
+        "n": 2,
+        "scale_n": 3
+      },
+      {
+        "range": "900-1800s",
+        "min": 900,
+        "max": 1800,
+        "factor": 1.654,
+        "n": 0,
+        "scale_n": 3
+      },
+      {
+        "range": "1800-3600s",
+        "min": 1800,
+        "max": 3600,
+        "factor": 1.748,
+        "n": 1,
+        "scale_n": 3
+      },
+      {
+        "range": "3600s+",
+        "min": 3600,
+        "max": null,
+        "factor": 1.654,
+        "n": 0,
+        "scale_n": 3
+      }
+    ]
+  },
+  "references": [
+    {
+      "label": "docs: инварианты складских документов в контракте правил",
+      "sp": 0.5,
+      "actual_seconds": 90,
+      "minutes": 1.5,
+      "files": 2,
+      "volume": 43,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: отгрузка по заданию заполняется тем, что реально собрано",
+      "sp": 0.5,
+      "actual_seconds": 114,
+      "minutes": 1.9,
+      "files": 5,
+      "volume": 169,
+      "layers": [
+        "api",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: движение ссылается на документ и хранит место целиком",
+      "sp": 0.5,
+      "actual_seconds": 104,
+      "minutes": 1.7,
+      "files": 2,
+      "volume": 106,
+      "layers": [
+        "migration",
+        "model"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: как войти в кабинет на стенде без прохождения OTP",
+      "sp": 0.5,
+      "actual_seconds": 52,
+      "minutes": 0.9,
+      "files": 1,
+      "volume": 35,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: колонка \"Остаток\" в каталоге номенклатур",
+      "sp": 0.5,
+      "actual_seconds": 110,
+      "minutes": 1.8,
+      "files": 2,
+      "volume": 44,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: закрепил, что при стеке сортировок пустые значения внизу каждой группы",
+      "sp": 0.5,
+      "actual_seconds": 67,
+      "minutes": 1.1,
+      "files": 1,
+      "volume": 36,
+      "layers": [
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: сортировка столбцов набирается кликами, без Shift",
+      "sp": 0.5,
+      "actual_seconds": 98,
+      "minutes": 1.6,
+      "files": 2,
+      "volume": 40,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: управление сортировкой в заголовке столбца стало заметным",
+      "sp": 0.5,
+      "actual_seconds": 50,
+      "minutes": 0.8,
+      "files": 1,
+      "volume": 31,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: закрепил правило — окружение и проверки только через контейнеры",
+      "sp": 0.5,
+      "actual_seconds": 116,
+      "minutes": 1.9,
+      "files": 1,
+      "volume": 16,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: колонки атрибутов-осей вариации (Цвет/Размер) в таблице номенклатур",
+      "sp": 0.5,
+      "actual_seconds": 106,
+      "minutes": 1.8,
+      "files": 1,
+      "volume": 25,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: у каждого статуса SKU свой цвет бейджа",
+      "sp": 0.5,
+      "actual_seconds": 79,
+      "minutes": 1.3,
+      "files": 2,
+      "volume": 11,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: обновил README/onboarding/CLAUDE.md/скиллы под раздельные .env",
+      "sp": 0.5,
+      "actual_seconds": 83,
+      "minutes": 1.4,
+      "files": 6,
+      "volume": 25,
+      "layers": [
+        "docs",
+        "other"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: адресное хранение как условие проведения документа",
+      "sp": 1,
+      "actual_seconds": 188,
+      "minutes": 3.1,
+      "files": 3,
+      "volume": 185,
+      "layers": [
+        "migration",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "doc: изменил шаблон",
+      "sp": 1,
+      "actual_seconds": 121,
+      "minutes": 2.0,
+      "files": 1,
+      "volume": 4,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "doc",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: скилл deploy и актуальные порты в документации",
+      "sp": 1,
+      "actual_seconds": 170,
+      "minutes": 2.8,
+      "files": 5,
+      "volume": 154,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: deploy/README.md — документ, по которому стенд разворачивается с нуля",
+      "sp": 1,
+      "actual_seconds": 169,
+      "minutes": 2.8,
+      "files": 1,
+      "volume": 312,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: контейнерный nginx проксирует бэкофис, пропускает фото и не кэширует index.html",
+      "sp": 1,
+      "actual_seconds": 140,
+      "minutes": 2.3,
+      "files": 1,
+      "volume": 119,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: атрибуты в карточке SKU разложены по сворачиваемым разделам",
+      "sp": 1,
+      "actual_seconds": 181,
+      "minutes": 3.0,
+      "files": 4,
+      "volume": 353,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: секции группировки каталога открываются по требованию, а не все сразу",
+      "sp": 1,
+      "actual_seconds": 149,
+      "minutes": 2.5,
+      "files": 1,
+      "volume": 54,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: убрал случайный NUL-байт в ProductsPage.tsx, из-за которого git видел файл как бинарн",
+      "sp": 1,
+      "actual_seconds": 144,
+      "minutes": 2.4,
+      "files": 1,
+      "volume": 0,
+      "layers": [
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: убрал дев-обход JWT-авторизации (get_current_user_dev)",
+      "sp": 1,
+      "actual_seconds": 150,
+      "minutes": 2.5,
+      "files": 1,
+      "volume": 13,
+      "layers": [
+        "api"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: перенос импорта каталога WB со страницы интеграций на номенклатуру",
+      "sp": 1,
+      "actual_seconds": 211,
+      "minutes": 3.5,
+      "files": 4,
+      "volume": 173,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: докер-стенд поднимается одной командой без ручных шагов",
+      "sp": 1,
+      "actual_seconds": 197,
+      "minutes": 3.3,
+      "files": 4,
+      "volume": 213,
+      "layers": [
+        "docs",
+        "other"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat(frontend): readonly-wiring для Справочников",
+      "sp": 1,
+      "actual_seconds": 162,
+      "minutes": 2.7,
+      "files": 1,
+      "volume": 17,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat(frontend)",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: отказ проведения возвращал 500 вместо списка ошибок по строкам",
+      "sp": 2,
+      "actual_seconds": 290,
+      "minutes": 4.8,
+      "files": 3,
+      "volume": 18,
+      "layers": [
+        "api",
+        "tests",
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: страница отбора под телефон кладовщика",
+      "sp": 2,
+      "actual_seconds": 376,
+      "minutes": 6.3,
+      "files": 7,
+      "volume": 330,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: вкладка «Задания на сборку» в товародвижении",
+      "sp": 2,
+      "actual_seconds": 257,
+      "minutes": 4.3,
+      "files": 7,
+      "volume": 451,
+      "layers": [
+        "api",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: задание на сборку — документ, который резервирует товар по ячейкам",
+      "sp": 2,
+      "actual_seconds": 415,
+      "minutes": 6.9,
+      "files": 22,
+      "volume": 1291,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "other",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: подсказка «занято в чужих черновиках» в карточке документа",
+      "sp": 2,
+      "actual_seconds": 249,
+      "minutes": 4.2,
+      "files": 7,
+      "volume": 190,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: нумерация документов — свой счётчик на тенант, тип и месяц",
+      "sp": 2,
+      "actual_seconds": 246,
+      "minutes": 4.1,
+      "files": 8,
+      "volume": 273,
+      "layers": [
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: переустановка хостового vhost без гашения стенда",
+      "sp": 2,
+      "actual_seconds": 374,
+      "minutes": 6.2,
+      "files": 3,
+      "volume": 112,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: склад маркетплейса привязывается со страницы складов",
+      "sp": 2,
+      "actual_seconds": 416,
+      "minutes": 6.9,
+      "files": 2,
+      "volume": 79,
+      "layers": [
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: раскладка по нескольким ячейкам со счётчиком",
+      "sp": 2,
+      "actual_seconds": 413,
+      "minutes": 6.9,
+      "files": 1,
+      "volume": 160,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: флаг «разрешено для FBS» у номенклатуры",
+      "sp": 2,
+      "actual_seconds": 343,
+      "minutes": 5.7,
+      "files": 13,
+      "volume": 226,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: запуск импорта каталога переехал в настройки, вкладка стала FBS",
+      "sp": 2,
+      "actual_seconds": 263,
+      "minutes": 4.4,
+      "files": 9,
+      "volume": 117,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: колокольчик уведомлений, WS-клиент и тосты",
+      "sp": 2,
+      "actual_seconds": 304,
+      "minutes": 5.1,
+      "files": 7,
+      "volume": 461,
+      "layers": [
+        "other",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: vault_bootstrap умеет прод-путь — transit/approle под переданным токеном",
+      "sp": 2,
+      "actual_seconds": 353,
+      "minutes": 5.9,
+      "files": 1,
+      "volume": 26,
+      "layers": [
+        "other"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: обёртка нативных вызовов больше не подмешивает код возврата в вывод",
+      "sp": 2,
+      "actual_seconds": 327,
+      "minutes": 5.5,
+      "files": 3,
+      "volume": 24,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: задание на сборку собирается из пачки FBS-заданий",
+      "sp": 3,
+      "actual_seconds": 479,
+      "minutes": 8.0,
+      "files": 12,
+      "volume": 599,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: API документов и отдельное право на проведение",
+      "sp": 3,
+      "actual_seconds": 465,
+      "minutes": 7.8,
+      "files": 11,
+      "volume": 804,
+      "layers": [
+        "api",
+        "migration",
+        "other",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: инвентаризация переехала в общую модель документа",
+      "sp": 3,
+      "actual_seconds": 425,
+      "minutes": 7.1,
+      "files": 12,
+      "volume": 527,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: проведение документа одной транзакцией — либо все строки, либо ни одной",
+      "sp": 3,
+      "actual_seconds": 508,
+      "minutes": 8.5,
+      "files": 6,
+      "volume": 899,
+      "layers": [
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: deploy.ps1 передавал параметры массивом вместо хэштаблицы",
+      "sp": 3,
+      "actual_seconds": 631,
+      "minutes": 10.5,
+      "files": 1,
+      "volume": 11,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: план переноса показывает и то, что не разрешено для FBS",
+      "sp": 3,
+      "actual_seconds": 508,
+      "minutes": 8.5,
+      "files": 7,
+      "volume": 158,
+      "layers": [
+        "api",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: склады получили тип и полноценный CRUD",
+      "sp": 3,
+      "actual_seconds": 645,
+      "minutes": 10.8,
+      "files": 16,
+      "volume": 811,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: импорт больше не плодит сирот в хранилище фото",
+      "sp": 3,
+      "actual_seconds": 582,
+      "minutes": 9.7,
+      "files": 6,
+      "volume": 320,
+      "layers": [
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: разовая подготовка каталога на сервере — отдельным шагом",
+      "sp": 3,
+      "actual_seconds": 492,
+      "minutes": 8.2,
+      "files": 3,
+      "volume": 34,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: импорт с WB перестал терять данные молча",
+      "sp": 3,
+      "actual_seconds": 437,
+      "minutes": 7.3,
+      "files": 2,
+      "volume": 190,
+      "layers": [
+        "service",
+        "tests"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: импорт с WB сначала создаёт SKU, потом обогащает его",
+      "sp": 3,
+      "actual_seconds": 625,
+      "minutes": 10.4,
+      "files": 2,
+      "volume": 380,
+      "layers": [
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: страница каталога отдаёт остатки SKU и умеет по ним сортировать",
+      "sp": 3,
+      "actual_seconds": 645,
+      "minutes": 10.8,
+      "files": 8,
+      "volume": 310,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: гибкая группировка каталога номенклатур со схлопыванием секций",
+      "sp": 3,
+      "actual_seconds": 472,
+      "minutes": 7.9,
+      "files": 1,
+      "volume": 0,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: сортировка и фильтр по атрибутам-осям вариации (цвет/размер)",
+      "sp": 3,
+      "actual_seconds": 610,
+      "minutes": 10.2,
+      "files": 7,
+      "volume": 318,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: вкладки товародвижения стали реестрами документов",
+      "sp": 5,
+      "actual_seconds": 747,
+      "minutes": 12.4,
+      "files": 10,
+      "volume": 1087,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: история движений сшита в документы задним числом",
+      "sp": 5,
+      "actual_seconds": 668,
+      "minutes": 11.1,
+      "files": 1,
+      "volume": 223,
+      "layers": [
+        "migration"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: операции товародвижения переехали на документы",
+      "sp": 5,
+      "actual_seconds": 722,
+      "minutes": 12.0,
+      "files": 19,
+      "volume": 765,
+      "layers": [
+        "migration",
+        "model",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: убрал тесты сид-скрипта, требовавшие пустой базы",
+      "sp": 5,
+      "actual_seconds": 664,
+      "minutes": 11.1,
+      "files": 4,
+      "volume": 134,
+      "layers": [
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: первичный перенос остатков на FBS-склад",
+      "sp": 5,
+      "actual_seconds": 970,
+      "minutes": 16.2,
+      "files": 11,
+      "volume": 421,
+      "layers": [
+        "api",
+        "other",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: задание WB без привязанного склада не входит в складской поток",
+      "sp": 5,
+      "actual_seconds": 664,
+      "minutes": 11.1,
+      "files": 4,
+      "volume": 152,
+      "layers": [
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: ядро уведомлений — модель, реестр типов, REST и WebSocket",
+      "sp": 5,
+      "actual_seconds": 752,
+      "minutes": 12.5,
+      "files": 21,
+      "volume": 1132,
+      "layers": [
+        "api",
+        "deploy",
+        "migration",
+        "model",
+        "other",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: параметры ssh отделены от боевых переменных, шаблон разворачивается сам",
+      "sp": 5,
+      "actual_seconds": 726,
+      "minutes": 12.1,
+      "files": 7,
+      "volume": 129,
+      "layers": [
+        "deploy",
+        "docs",
+        "other"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: серверные скрипты — свой vhost и свой сертификат, без касания соседей",
+      "sp": 5,
+      "actual_seconds": 659,
+      "minutes": 11.0,
+      "files": 7,
+      "volume": 706,
+      "layers": [
+        "deploy",
+        "other"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: порты дев-стенда — переменные в блоке 18xxx, а не литералы",
+      "sp": 5,
+      "actual_seconds": 692,
+      "minutes": 11.5,
+      "files": 5,
+      "volume": 65,
+      "layers": [
+        "deploy",
+        "other",
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: импорт с WB берёт разметку осей вариации и выгружает инкрементально",
+      "sp": 5,
+      "actual_seconds": 688,
+      "minutes": 11.5,
+      "files": 9,
+      "volume": 538,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "other",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: импорт видит карточки в корзине WB и черновики, не созданные маркетплейсом",
+      "sp": 5,
+      "actual_seconds": 700,
+      "minutes": 11.7,
+      "files": 3,
+      "volume": 371,
+      "layers": [
+        "other",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: ошибка маппинга снимается сама, когда данные появились",
+      "sp": 5,
+      "actual_seconds": 871,
+      "minutes": 14.5,
+      "files": 11,
+      "volume": 861,
+      "layers": [
+        "api",
+        "model",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: пустые значения всегда в конце списка при любом направлении сортировки",
+      "sp": 5,
+      "actual_seconds": 742,
+      "minutes": 12.4,
+      "files": 2,
+      "volume": 63,
+      "layers": [
+        "repo",
+        "tests"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: перевёл поиск и фильтры статус/тип на серверный запрос",
+      "sp": 5,
+      "actual_seconds": 976,
+      "minutes": 16.3,
+      "files": 2,
+      "volume": 45,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: множественная сортировка каталога с индикаторами на столбцах",
+      "sp": 5,
+      "actual_seconds": 735,
+      "minutes": 12.2,
+      "files": 8,
+      "volume": 234,
+      "layers": [
+        "api",
+        "other",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: полный сьют зелёный после перевода операций на документы",
+      "sp": 8,
+      "actual_seconds": 1133,
+      "minutes": 18.9,
+      "files": 2,
+      "volume": 20,
+      "layers": [
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: стягивание остатков WB в систему с корректировкой и уведомлением",
+      "sp": 8,
+      "actual_seconds": 1089,
+      "minutes": 18.1,
+      "files": 6,
+      "volume": 443,
+      "layers": [
+        "api",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: уточнил, когда гонять полный сьют",
+      "sp": 8,
+      "actual_seconds": 1299,
+      "minutes": 21.6,
+      "files": 1,
+      "volume": 10,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: несколько FBS-складов и удаление склада с остатками",
+      "sp": 8,
+      "actual_seconds": 1398,
+      "minutes": 23.3,
+      "files": 9,
+      "volume": 433,
+      "layers": [
+        "api",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: сохранение карточки падало на полях вынесенных таблиц",
+      "sp": 8,
+      "actual_seconds": 1068,
+      "minutes": 17.8,
+      "files": 5,
+      "volume": 165,
+      "layers": [
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: сортировка таблиц, видимый запрет FBS вместо пустого списка",
+      "sp": 8,
+      "actual_seconds": 1093,
+      "minutes": 18.2,
+      "files": 10,
+      "volume": 313,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: перемещение стало документом с подбором ячеек",
+      "sp": 8,
+      "actual_seconds": 1426,
+      "minutes": 23.8,
+      "files": 20,
+      "volume": 1373,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: импорт с WB считает прогон по разрезам и не перечитывает неизменившееся",
+      "sp": 8,
+      "actual_seconds": 1253,
+      "minutes": 20.9,
+      "files": 13,
+      "volume": 677,
+      "layers": [
+        "migration",
+        "model",
+        "other",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: стенд закрыт от поисковой индексации (требование руководителя)",
+      "sp": 8,
+      "actual_seconds": 1551,
+      "minutes": 25.9,
+      "files": 2,
+      "volume": 19,
+      "layers": [
+        "deploy",
+        "other"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: у прод-стенда своё имя проекта, чтобы он не подменял дев-контейнеры",
+      "sp": 8,
+      "actual_seconds": 1210,
+      "minutes": 20.2,
+      "files": 3,
+      "volume": 28,
+      "layers": [
+        "deploy",
+        "docs",
+        "other"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: откат переименования артикулов читает аудит, а не догадывается по связи с WB",
+      "sp": 8,
+      "actual_seconds": 1517,
+      "minutes": 25.3,
+      "files": 1,
+      "volume": 33,
+      "layers": [
+        "migration"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: обогащение импорта разбито на блоки, каждый со своей записью в журнале",
+      "sp": 8,
+      "actual_seconds": 1109,
+      "minutes": 18.5,
+      "files": 8,
+      "volume": 464,
+      "layers": [
+        "api",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: деструктивные repo-тесты не запускаются без явного согласия",
+      "sp": 8,
+      "actual_seconds": 1021,
+      "minutes": 17.0,
+      "files": 1,
+      "volume": 27,
+      "layers": [
+        "tests"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: фронт в контейнере подхватывает правки сам, без ручного docker restart",
+      "sp": 8,
+      "actual_seconds": 1053,
+      "minutes": 17.6,
+      "files": 3,
+      "volume": 34,
+      "layers": [
+        "other",
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: seed_demo больше не стирает базу — обновляет только демо тестового тенанта",
+      "sp": 13,
+      "actual_seconds": 2257,
+      "minutes": 37.6,
+      "files": 2,
+      "volume": 58,
+      "layers": [
+        "docs",
+        "other"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: bootstrap передаёт .env и каталоги пользователю и проверяет группу docker",
+      "sp": 13,
+      "actual_seconds": 1968,
+      "minutes": 32.8,
+      "files": 1,
+      "volume": 32,
+      "layers": [
+        "deploy"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: убрал отдельное поле \"Сортировка\" со страницы номенклатур",
+      "sp": 13,
+      "actual_seconds": 1584,
+      "minutes": 26.4,
+      "files": 1,
+      "volume": 6,
+      "layers": [
+        "web"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: развёл .env на отдельные дев/прод шаблоны",
+      "sp": 13,
+      "actual_seconds": 1873,
+      "minutes": 31.2,
+      "files": 5,
+      "volume": 85,
+      "layers": [
+        "other",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "docs: Добавил CLAUDE.md для backend и скиллы (git/api/тесты/сущности)",
+      "sp": 13,
+      "actual_seconds": 1864,
+      "minutes": 31.1,
+      "files": 5,
+      "volume": 296,
+      "layers": [
+        "docs"
+      ],
+      "kind": "docs",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: Добавил тесты CatalogRepo на реальной БД (tests/catalog/repo)",
+      "sp": 13,
+      "actual_seconds": 1706,
+      "minutes": 28.4,
+      "files": 19,
+      "volume": 1327,
+      "layers": [
+        "other",
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: Добавил недостающие CRUD-методы номенклатуры в catalog.py",
+      "sp": 13,
+      "actual_seconds": 1799,
+      "minutes": 30.0,
+      "files": 4,
+      "volume": 919,
+      "layers": [
+        "api",
+        "repo",
+        "service"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: Поправил ошибку неразрешения взаимосвязей таблиц",
+      "sp": 13,
+      "actual_seconds": 2013,
+      "minutes": 33.5,
+      "files": 1,
+      "volume": 9,
+      "layers": [
+        "model"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: системные источники создают документы, склад сам выбирает ячейку",
+      "sp": 21,
+      "actual_seconds": 3450,
+      "minutes": 57.5,
+      "files": 16,
+      "volume": 584,
+      "layers": [
+        "model",
+        "repo",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: постраничные остатки с поиском и история, переживающая удаление склада",
+      "sp": 21,
+      "actual_seconds": 2789,
+      "minutes": 46.5,
+      "files": 11,
+      "volume": 433,
+      "layers": [
+        "api",
+        "docs",
+        "migration",
+        "model",
+        "repo",
+        "service",
+        "tests",
+        "web"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: демо-товары переиспользуют реальные оси цвет/размер, без дублей колонок",
+      "sp": 21,
+      "actual_seconds": 3768,
+      "minutes": 62.8,
+      "files": 5,
+      "volume": 159,
+      "layers": [
+        "other",
+        "tests"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: артикул SKU строится из артикула продавца, а не из идентификатора WB",
+      "sp": 21,
+      "actual_seconds": 2969,
+      "minutes": 49.5,
+      "files": 13,
+      "volume": 1223,
+      "layers": [
+        "migration",
+        "model",
+        "other",
+        "service",
+        "tests"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat(frontend): пресет прав по умолчанию — текущая роль сотрудника",
+      "sp": 21,
+      "actual_seconds": 2459,
+      "minutes": 41.0,
+      "files": 2,
+      "volume": 12,
+      "layers": [
+        "web"
+      ],
+      "kind": "feat(frontend)",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: добавил тесты импорта номенклатуры (валидация + REST-слой)",
+      "sp": 21,
+      "actual_seconds": 2529,
+      "minutes": 42.1,
+      "files": 2,
+      "volume": 200,
+      "layers": [
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "test: Добавил REST-тесты API каталога и скрипт для их прогона",
+      "sp": 21,
+      "actual_seconds": 3360,
+      "minutes": 56.0,
+      "files": 18,
+      "volume": 2076,
+      "layers": [
+        "other",
+        "tests"
+      ],
+      "kind": "test",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "Fix local setup docs and make compose read the real .env.",
+      "sp": 21,
+      "actual_seconds": 3550,
+      "minutes": 59.2,
+      "files": 2,
+      "volume": 48,
+      "layers": [
+        "docs",
+        "other"
+      ],
+      "kind": "fix local setup docs and make compose read the real .env.",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "fix: архивы образов не попадают ни в git, ни в контекст сборки",
+      "sp": 34,
+      "actual_seconds": 3934,
+      "minutes": 65.6,
+      "files": 2,
+      "volume": 16,
+      "layers": [
+        "other"
+      ],
+      "kind": "fix",
+      "source": "git-2026-09-01"
+    },
+    {
+      "label": "feat: Для тестовых стендов убрана проверка авторизации.",
+      "sp": 34,
+      "actual_seconds": 3965,
+      "minutes": 66.1,
+      "files": 1,
+      "volume": 21,
+      "layers": [
+        "api"
+      ],
+      "kind": "feat",
+      "source": "git-2026-09-01"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{"label": "план 011 (выкатка на стенд): оценка 45 SP -> 70 мин + 20 мин запаса", "points": [], "shelf_seconds": 4200, "buffer_seconds": 1200, "actual_seconds": 4267, "approximate": true, "note": "actual — сумма 12 зафиксированных шагов плана, то есть НИЖНЯЯ граница: ходы без записи в неё не вошли. Единственная пара уровня плана, полученная новым механизмом; заведена при миграции, а не через record-plan. Исходный список очков по задачам не сохранился — в plans он пуст, объявленная сумма 45 SP лежит отдельным полем.", "sp_total_declared": 45}
+{"label": "012 notifications-fbs-warehouse", "points": [3.0, 5.0, 3.0, 8.0, 2.0, 5.0, 5.0, 5.0, 3.0, 3.0, 8.0, 5.0, 3.0, 5.0, 2.0, 5.0, 5.0, 3.0, 3.0, 5.0, 1.0, 2.0, 3.0, 5.0, 8.0, 2.0, 5.0, 2.0, 3.0, 3.0, 5.0, 2.0, 3.0, 5.0, 3.0, 3.0, 5.0, 5.0], "shelf_seconds": 12366, "buffer_seconds": 7518, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "012-rewrite", "points": [5.0, 5.0, 3.0, 5.0, 8.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 3.0, 5.0, 8.0, 3.0, 5.0, 3.0, 1.0, 5.0, 8.0, 8.0, 3.0, 5.0, 5.0, 3.0, 3.0, 3.0, 3.0, 5.0, 2.0, 3.0, 8.0, 5.0, 8.0, 5.0, 13.0, 3.0, 8.0], "shelf_seconds": 16872, "buffer_seconds": 7398, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "012-v3", "points": [5.0, 5.0, 3.0, 5.0, 8.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 3.0, 5.0, 8.0, 3.0, 5.0, 3.0, 1.0, 5.0, 8.0, 8.0, 3.0, 5.0, 5.0, 3.0, 3.0, 3.0, 3.0, 5.0, 2.0, 3.0, 8.0, 5.0, 8.0, 5.0, 13.0, 3.0, 8.0, 5.0, 8.0, 3.0], "shelf_seconds": 18054, "buffer_seconds": 7824, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "012-v4", "points": [5.0, 5.0, 3.0, 5.0, 8.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 3.0, 5.0, 8.0, 3.0, 5.0, 3.0, 1.0, 5.0, 8.0, 8.0, 3.0, 5.0, 3.0, 3.0, 3.0, 3.0, 3.0, 5.0, 2.0, 3.0, 8.0, 5.0, 8.0, 5.0, 13.0, 3.0, 8.0, 5.0, 8.0, 3.0], "shelf_seconds": 21660, "buffer_seconds": 8730, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "012-v4-recheck", "points": [5.0, 5.0, 3.0, 5.0, 8.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 3.0, 5.0, 8.0, 3.0, 5.0, 3.0, 1.0, 5.0, 8.0, 8.0, 3.0, 5.0, 3.0, 3.0, 3.0, 3.0, 3.0, 5.0, 2.0, 3.0, 8.0, 5.0, 8.0, 5.0, 13.0, 3.0, 8.0, 5.0, 8.0, 3.0], "shelf_seconds": 21660, "buffer_seconds": 8730, "actual_seconds": 15600, "scale": "old-2026-08"}
+{"label": "012-followup", "points": [13.0, 8.0, 8.0, 5.0, 5.0], "shelf_seconds": 3180, "buffer_seconds": 1680, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "013 documents wms", "points": [8.0, 3.0, 5.0, 13.0, 5.0, 8.0, 8.0, 5.0, 8.0, 13.0, 5.0, 8.0, 3.0, 8.0, 13.0, 5.0, 3.0, 3.0, 5.0, 3.0, 8.0, 8.0, 8.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 8.0, 5.0, 5.0, 5.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 8.0, 3.0, 13.0], "shelf_seconds": 23652, "buffer_seconds": 10548, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "(без метки)", "points": [273.0], "shelf_seconds": 1722, "buffer_seconds": 516, "actual_seconds": null, "scale": "old-2026-08"}
+{"label": "013-additions", "points": [13.0, 21.0, 8.0, 8.0, 5.0, 8.0, 5.0, 8.0, 5.0, 3.0, 3.0, 2.0, 8.0], "shelf_seconds": 7890, "buffer_seconds": 3600, "actual_seconds": 3097, "note": "весь план 013: 357 SP / 190 мин; здесь доля добавки по сторипоинтам", "scale": "old-2026-08"}
+{"label": "014 распределённая инфраструктура офис-дом", "points": [2.0, 2.0, 1.0, 5.0, 2.0, 8.0, 3.0, 3.0, 5.0, 5.0, 3.0, 2.0], "shelf_seconds": 5994, "buffer_seconds": 786, "actual_seconds": null}
+{"label": "014 распределённая инфраструктура офис-дом (остаток после фазы 0)", "points": [1.0, 5.0, 2.0, 8.0, 3.0, 3.0, 3.0, 5.0, 3.0, 2.0], "shelf_seconds": 5106, "buffer_seconds": 678, "actual_seconds": null}
+{"label": "014 остаток после фаз 0 и 7.1", "points": [1.0, 5.0, 2.0, 8.0, 3.0, 3.0, 3.0, 5.0, 3.0], "shelf_seconds": 4800, "buffer_seconds": 606, "actual_seconds": null}
+{"label": "014 выполнение остатка целиком", "points": [1.0, 5.0, 3.0, 2.0, 3.0, 8.0, 3.0, 5.0, 3.0, 2.0], "shelf_seconds": 5106, "buffer_seconds": 684, "actual_seconds": 1770}
+{"label": "план 015 комплекты и FBS-черновики", "points": [3.0, 3.0, 3.0, 2.0, 5.0, 3.0, 5.0, 5.0, 3.0, 5.0, 5.0, 3.0, 5.0, 3.0, 5.0, 8.0, 5.0, 3.0, 5.0, 5.0, 5.0, 5.0, 5.0, 3.0, 3.0, 3.0, 8.0, 8.0, 5.0, 5.0, 5.0, 3.0, 8.0, 8.0], "shelf_seconds": 22464, "buffer_seconds": 2544, "actual_seconds": 10800}
+{"label": "правки 015: задание на компоновку", "points": [2.0, 5.0, 5.0, 2.0, 5.0, 2.0, 8.0], "shelf_seconds": 4116, "buffer_seconds": 570, "actual_seconds": 4500}
+{"label": "правки 015: информативный черновик компоновки", "points": [5.0, 2.0, 8.0], "shelf_seconds": 2112, "buffer_seconds": 318, "actual_seconds": 4200}
+{"label": "FBS: цикл сборка-отгрузка и панель задания", "points": [5.0, 5.0, 5.0, 2.0, 8.0], "shelf_seconds": 3504, "buffer_seconds": 426, "actual_seconds": null}
+{"label": "инварианты резерва: черновик, удаление, закрытие", "points": [5.0, 8.0], "shelf_seconds": 1806, "buffer_seconds": 246, "actual_seconds": 1140}
+{"label": "FBS: оживить кнопки и связь с товародвижением", "points": [5.0, 5.0, 5.0, 2.0, 8.0], "shelf_seconds": 3504, "buffer_seconds": 426, "actual_seconds": 4020}
+{"label": "016 калибровка на отдельной ветке", "points": [3.0, 5.0, 3.0, 2.0, 2.0, 3.0, 2.0], "shelf_seconds": 2982, "buffer_seconds": 432, "actual_seconds": null}
+{"label": "план 020 roadmap товаропотока", "points": [2.0, 2.0, 2.0, 2.0, 2.0, 8.0, 8.0, 0.5], "shelf_seconds": 3780, "buffer_seconds": 726, "actual_seconds": null}
+{"label": "план 021 брак/статусы, разборка, обратный поток", "points": [2.0, 5.0, 5.0, 2.0, 5.0, 2.0, 2.0, 5.0, 5.0, 5.0, 2.0, 3.0, 2.0, 5.0, 8.0, 2.0, 5.0, 8.0, 3.0, 5.0, 3.0, 5.0, 8.0, 8.0], "shelf_seconds": 14670, "buffer_seconds": 2136, "actual_seconds": null}
+{"label": "017 формат планов UserStory", "points": [1.0, 5.0, 5.0, 2.0, 3.0], "shelf_seconds": 2298, "buffer_seconds": 312, "actual_seconds": null}
+{"label": "022 новая система времени: эталоны шагов и историй", "points": [3.0, 5.0, 5.0, 3.0, 8.0, 8.0, 3.0, 2.0, 5.0], "shelf_seconds": 5910, "buffer_seconds": 732, "actual_seconds": null}
+{"label": "023 дробление эталонных шагов", "points": [5.0, 8.0, 5.0, 5.0, 3.0], "shelf_seconds": 3618, "buffer_seconds": 378, "actual_seconds": null}
+{"label": "022 библиотека проектных скиллов", "points": [8.0, 5.0, 2.0], "shelf_seconds": 2070, "buffer_seconds": 300, "actual_seconds": null}
+{"label": "022 пересмотр библиотеки скиллов", "points": [3.0, 5.0, 8.0, 13.0, 5.0], "shelf_seconds": 4020, "buffer_seconds": 1116, "actual_seconds": null}
+{"label": "022 реализация: 28 скиллов, реестр, самопроверка", "points": [2.0, 8.0, 5.0, 5.0, 8.0, 13.0, 8.0, 5.0, 5.0, 3.0], "shelf_seconds": 7872, "buffer_seconds": 1632, "actual_seconds": null}
+{"label": "022 доменная структура, вынос сервиса, ветки, правка формулировок", "points": [3.0, 8.0, 8.0, 5.0, 5.0, 3.0], "shelf_seconds": 4476, "buffer_seconds": 540, "actual_seconds": null}
+{"label": "022 выбор хранилища, ORM и сессии, модели", "points": [8.0, 8.0, 8.0, 3.0], "shelf_seconds": 3732, "buffer_seconds": 540, "actual_seconds": null}
+{"label": "022 раскладка кода, шаблон миграций", "points": [2.0, 8.0, 5.0, 3.0], "shelf_seconds": 2526, "buffer_seconds": 354, "actual_seconds": null}
+{"label": "034 журнал, подключение и портал", "points": [8.0, 3.0, 5.0, 8.0, 5.0, 5.0, 5.0, 5.0, 8.0, 5.0, 5.0, 8.0, 5.0, 5.0, 8.0, 8.0, 8.0, 3.0, 3.0], "shelf_seconds": 36744, "buffer_seconds": 12306, "actual_seconds": null}
+{"label": "037 доступ, журнал и кто именно", "points": [3.0, 3.0, 5.0, 5.0, 8.0, 5.0], "shelf_seconds": 9630, "buffer_seconds": 2562, "actual_seconds": null}
+{"label": "039", "points": [2.0, 5.0, 3.0, 3.0, 3.0, 1.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0], "shelf_seconds": 11262, "buffer_seconds": 2094, "actual_seconds": 2910}
+{"label": "039", "points": [2.0, 5.0, 3.0, 3.0, 3.0, 1.0, 1.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0], "shelf_seconds": 11262, "buffer_seconds": 2094, "actual_seconds": null}
+{"label": "040 редактор и файлы для статей", "points": [5.0, 5.0, 3.0], "shelf_seconds": 2976, "buffer_seconds": 792, "actual_seconds": null}
+{"label": "041 база знаний в онбординге", "points": [3.0, 3.0, 3.0, 2.0, 2.0, 2.0, 5.0, 3.0, 3.0, 1.0], "shelf_seconds": 5838, "buffer_seconds": 1566, "actual_seconds": null}
+{"label": "041 база знаний (пересчёт)", "points": [3.0, 3.0, 3.0, 2.0, 1.0, 2.0, 2.0, 5.0, 3.0, 3.0, 1.0], "shelf_seconds": 6258, "buffer_seconds": 1632, "actual_seconds": null}
+{"label": "042 комплект для команды", "points": [3.0, 3.0, 3.0, 2.0, 2.0, 2.0], "shelf_seconds": 3402, "buffer_seconds": 834, "actual_seconds": 1326}
+{"label": "042 комплект для команды", "points": [3.0, 3.0, 3.0, 2.0, 2.0, 2.0], "shelf_seconds": 3402, "buffer_seconds": 834, "actual_seconds": null}
+{"label": "(без метки)", "points": [3.0, 5.0, 2.0, 8.0, 3.0, 5.0, 5.0, 3.0], "shelf_seconds": 11130, "buffer_seconds": 2844, "actual_seconds": null}
+{"label": "(без метки)", "points": [2.0, 1.0], "shelf_seconds": 894, "buffer_seconds": 156, "actual_seconds": null}
+{"label": "(без метки)", "points": [1.0], "shelf_seconds": 348, "buffer_seconds": 66, "actual_seconds": null}
+{"label": "(без метки)", "points": [3.0], "shelf_seconds": 954, "buffer_seconds": 180, "actual_seconds": null}
+{"label": "(без метки)", "points": [3.0, 5.0, 8.0, 5.0, 3.0], "shelf_seconds": 7950, "buffer_seconds": 2262, "actual_seconds": null}
+{"label": "(без метки)", "points": [5.0, 2.0, 5.0, 5.0, 3.0], "shelf_seconds": 6534, "buffer_seconds": 1188, "actual_seconds": null}
+{"label": "(без метки)", "points": [5.0, 2.0, 5.0, 5.0, 8.0, 3.0], "shelf_seconds": 9216, "buffer_seconds": 2478, "actual_seconds": null}
+{"label": "(без метки)", "points": [5.0, 2.0, 5.0, 5.0, 8.0, 8.0, 3.0], "shelf_seconds": 11898, "buffer_seconds": 3768, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0], "shelf_seconds": 6120, "buffer_seconds": 1260, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0, 3.0], "shelf_seconds": 6966, "buffer_seconds": 1446, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0], "shelf_seconds": 8454, "buffer_seconds": 1728, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 3.0, 5.0], "shelf_seconds": 10824, "buffer_seconds": 2220, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 3.0, 5.0, 3.0], "shelf_seconds": 11676, "buffer_seconds": 2400, "actual_seconds": null}
+{"label": "063-reference-stend-naneseniya", "points": [2.0, 5.0, 5.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 2.0, 2.0, 3.0, 5.0, 3.0, 1.0], "shelf_seconds": 12012, "buffer_seconds": 2460, "actual_seconds": null}
+{"label": "077", "points": [2.0, 3.0, 2.0, 2.0, 3.0, 3.0], "shelf_seconds": 4506, "buffer_seconds": 834, "actual_seconds": null}
+{"label": "078", "points": [2.0, 5.0, 2.0, 1.0, 3.0, 3.0, 3.0, 2.0, 2.0], "shelf_seconds": 7080, "buffer_seconds": 1296, "actual_seconds": null}
+{"label": "083", "points": [3.0, 2.0], "shelf_seconds": 1500, "buffer_seconds": 276, "actual_seconds": null}
+{"label": "083-hints", "points": [3.0], "shelf_seconds": 954, "buffer_seconds": 180, "actual_seconds": null}
+{"label": "084", "points": [5.0, 3.0, 3.0, 5.0, 2.0, 1.0], "shelf_seconds": 6168, "buffer_seconds": 1134, "actual_seconds": null}
+{"label": "085", "points": [8.0, 3.0, 5.0, 8.0, 5.0, 2.0, 5.0], "shelf_seconds": 11898, "buffer_seconds": 3768, "actual_seconds": null}
+{"label": "koleso", "points": [3.0, 5.0, 5.0, 3.0, 5.0, 5.0, 5.0, 3.0, 3.0, 8.0, 3.0], "shelf_seconds": 11700, "buffer_seconds": 2730, "actual_seconds": null}
+{"label": "koleso-902", "points": [1.0, 3.0, 2.0, 5.0, 1.0, 3.0, 3.0, 2.0], "shelf_seconds": 4824, "buffer_seconds": 888, "actual_seconds": null}
+{"label": "089", "points": [2.0, 2.0, 5.0, 2.0, 1.0], "shelf_seconds": 1680, "buffer_seconds": 300, "actual_seconds": null}
+{"label": "091", "points": [3.0, 3.0, 5.0, 2.0, 5.0, 1.0, 1.0, 5.0, 3.0, 3.0, 5.0, 5.0, 2.0], "shelf_seconds": 10440, "buffer_seconds": 1908, "actual_seconds": null}
+{"label": "102", "points": [2.0, 3.0, 5.0, 5.0, 3.0, 2.0, 3.0, 5.0, 5.0, 3.0], "shelf_seconds": 10662, "buffer_seconds": 1956, "actual_seconds": null}
+{"label": "102", "points": [2.0, 3.0, 5.0, 5.0, 3.0, 2.0, 5.0, 5.0, 5.0, 1.0], "shelf_seconds": 11142, "buffer_seconds": 2028, "actual_seconds": null}
+{"label": "102", "points": [2.0, 3.0, 5.0, 5.0, 3.0, 2.0, 3.0, 5.0, 5.0, 1.0], "shelf_seconds": 10128, "buffer_seconds": 1848, "actual_seconds": null}
+{"label": "102", "points": [3.0, 3.0, 5.0, 5.0, 3.0, 2.0, 3.0, 5.0, 5.0, 1.0], "shelf_seconds": 10500, "buffer_seconds": 1926, "actual_seconds": null}
+{"label": "011 cursor в проектах", "points": [3.0, 3.0, 2.0, 3.0, 3.0, 3.0, 5.0], "shelf_seconds": 7008, "buffer_seconds": 1314, "actual_seconds": null}
