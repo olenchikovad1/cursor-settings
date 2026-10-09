@@ -1,14 +1,14 @@
 ---
 project: plm
 epic: plm
-status: in-progress
+status: merged
 base_branch: master
 branch: 018-card-sketch-dirs
 depends_on: []
 created: 2026-10-09
 stories: 14
 sp_total: 46
-minutes_total: 273
+minutes_total: 284
 ---
 
 # 018 — Доработки карточки модели, эскиза, табеля мер и справочников
@@ -593,3 +593,24 @@ US-0458: на hub 21 единица, дубли cm×7 / mm×7 / g/m2×2 / m×2. 
 `python -m scripts.merge_uom_duplicates`). Тесты `test_uom_merge` зелёные.
 
 **В работе на момент записи:** US-0459.
+
+### 2026-10-09 · DESKTOP-FA9EUCC
+
+US-0459 (`16382a0`): Create без родителя; единицы / детали / точки мер /
+библиотеки — «Добавить»; элемент библиотеки — upload картинки; раздел
+image-libraries → dictionaries. Тест create дошёл до 201, финальный
+перегон сорвался падением Docker Desktop — повторить. Дальше US-0460.
+
+**В работе на момент записи:** US-0460.
+
+### 2026-10-09 · DESKTOP-FA9EUCC
+
+Закрыты US-0460…0463: поиск/отбор/превью справочников; Ctrl+V в табель
+без обязательной модалки + отчёт; человеческие подсказки; компактная панель
+кнопок (`e8ace16`, `c69db3e`). Слито в `master` с origin (эскиз справа,
+zoom, удаление, измерения из справочника, крошки до вкладки): `5abc59b`.
+Сьюты: backend 794 + web-tests 492 зелёные. Hub UOM merge — в open-questions.
+Браузер не смотрели (стенд не поднят, З-14). `master` локально ahead 19 —
+пуш на GitHub не делался (нужен явный запрос).
+
+**В работе на момент записи:** ничего.
