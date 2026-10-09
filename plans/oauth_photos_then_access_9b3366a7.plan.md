@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: oauth-ship
     content: "По команде плана: ship --config + apply + проверка фото (повторный вход)"
-    status: in_progress
+    status: completed
   - id: invites-wip
     content: "Потом: добить Invitations UI + тесты + убрать Сейф из меню"
     status: completed
