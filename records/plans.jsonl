@@ -69,3 +69,4 @@
 {"label": "102", "points": [3.0, 3.0, 5.0, 5.0, 3.0, 2.0, 3.0, 5.0, 5.0, 1.0], "shelf_seconds": 10500, "buffer_seconds": 1926, "actual_seconds": null}
 {"label": "011 cursor в проектах", "points": [3.0, 3.0, 2.0, 3.0, 3.0, 3.0, 5.0], "shelf_seconds": 7008, "buffer_seconds": 1314, "actual_seconds": null}
 {"label": "917 grimoire krujok", "points": [3.0, 2.0], "shelf_seconds": 1122, "buffer_seconds": 204, "actual_seconds": null}
+{"label": "reference-prod-fill", "points": [3.0, 5.0, 2.0, 1.0], "shelf_seconds": 1062, "buffer_seconds": 192, "actual_seconds": null}
