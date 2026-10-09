@@ -45,9 +45,14 @@ Claude Code; из него берут, в него не пишут.
 - `guard_destructive.py` — запрещает снос томов, `rm -rf` от корня, силовой
   пуш в базовые ветки; миграции — вопросом.
 - `time_estimate.py` — замеряет ходы и напоминает про строку с оценкой.
+- `guard_plan_in_progress.py` — на `stop` не даёт бросить план
+  `in-progress`: `followup_message` до конца незакрытых историй
+  (`loop_limit: 400`). Заявка — `plan_session.py --claim`. Правило —
+  `execute-plan` / `continuity.md` и `rules/plan-end-to-end.mdc`.
 - `autosync_cursor.py` — коммит в `wip/<роль>` на каждом ходу, `master` на
   границе сессии. `--status`, `--show-wip`, `--adopt-wip`, `--drop-wip --yes`.
-- `compact_hint.py` — подсказка перед сжатием контекста.
+- `compact_hint.py` — подсказка перед сжатием; при активном плане ещё и
+  `additional_context` модели «сжатие не пауза — продолжай план».
 
 ## Инварианты
 

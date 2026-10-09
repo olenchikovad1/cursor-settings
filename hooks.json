@@ -24,6 +24,11 @@
     ],
     "stop": [
       { "command": "py -X utf8 ./hooks/time_estimate.py stop", "loop_limit": 1, "timeout": 20 },
+      {
+        "command": "py -X utf8 ./hooks/guard_plan_in_progress.py",
+        "loop_limit": 400,
+        "timeout": 20
+      },
       { "command": "py -X utf8 ./hooks/autosync_cursor.py --stop", "timeout": 20 }
     ],
     "sessionEnd": [

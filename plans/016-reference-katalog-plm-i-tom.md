@@ -1,7 +1,7 @@
 ---
 project: reference
 epic: reference
-status: in-progress
+status: done
 base_branch: master
 branch: master
 depends_on: []
@@ -253,3 +253,21 @@ US-0893. Ждёт готовности машинного чтения в plm (�
 Сменный том infra/garment-assets: seed со стенда (кадры B-HDY-14 + prints, без .bw).
 Демо: FILES_HOST_PATH=./garment-assets, кадр front 200 PNG ~190 КБ. Коммит 1755ad6.
 В работе на момент записи: US-0886.
+
+### 2026-10-09 · DESKTOP-FA9EUCC · US-0886
+
+Каталог live: plm_product_links (style→кадры), enrich colorways с can_work и rgb.
+UI: Drops/Showcase переключаются на plm при configured+reachable; стенд без ключа — локально.
+Тесты 7 green. Коммит 4b584de.
+В работе на момент записи: US-0887.
+
+### 2026-10-09 · DESKTOP-FA9EUCC · US-0887
+
+Картинки plm: machine images thumb/preview, порог 800px; BFF /plm/images; UI дропа/создания.
+Решение 0018 дописано. Коммиты reference 6c9c81e, plm 07654a3.
+В работе на момент записи: US-0893.
+
+### 2026-10-09 · DESKTOP-FA9EUCC · US-0893
+
+Паспорт plm в панели изделия (бренд/поставщик/размерный ряд/отметки). PLM machine card обогащён. Коммиты reference f443baf, plm a0aa9ae.
+План 016 закрыт. В работе на момент записи: план 017.

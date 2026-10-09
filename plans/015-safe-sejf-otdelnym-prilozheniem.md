@@ -548,4 +548,12 @@ US-0030: preview/import Passwork JSON (без реальных секретов 
 US-0031: POST /entries/bulk.
 US-0036: /people?include_external=.
 US-0034: password_audit при заведении + GET /audit/passwords.
-Осталось дотянуть: полноценный UI разделов админки (US-0033), заявки каталога (US-0032), Passwork API вложений (US-0035) — когда будет выгрузка/ключ у владельца.
+US-0032: заявки каталога (модель, API, UI `/catalog` и `/requests`).
+US-0033: разделы админки в манифесте и UI; «папка»/«запись» вместо «сервис».
+US-0035: Passwork API preview вложений и людей без хранения ключей.
+
+**В работе на момент записи:** стенд — register-application, relocate грантов, убрать `platform/safe` из compose; живое скачивание вложений Passwork — по ключу владельца (`plans/notes/015-open-questions.md`).
+
+### 2026-10-09 · правило «план от и до» в Cursor
+
+Stop-хук `guard_plan_in_progress` перенесён в `~/.cursor/hooks/` и подключён в `hooks.json` (`loop_limit: 400`); alwaysApply-правило `rules/plan-end-to-end.mdc`; `compact_hint` после сжатия напоминает модели продолжать план.
