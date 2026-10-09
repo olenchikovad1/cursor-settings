@@ -1,9 +1,12 @@
 ---
 name: platform
-remote: https://github.com/olenchikovad1/platform.git
+# Только командный репозиторий: личный olenchikovad1/platform владелец
+# отвязал 09.10.2026 — командная работа (Сейф, OpenBao) туда не попадала.
+remote: https://github.com/Laretto-Team/platform.git
 default_base_branch: develop
 branch_prefix: task/
-backend_test_command: "uv run pytest -q"
+# uv на машине нет, тесты идут в контейнере стенда (скилл platform-stand).
+backend_test_command: "docker compose --env-file .env -f infra/compose.yaml run --rm --no-deps tests"
 frontend_test_command: "npm run test --workspaces --if-present"
 frontend_build_command: "npm run build --workspaces --if-present"
 frontend_lint_command: "npm run lint --workspaces --if-present"
