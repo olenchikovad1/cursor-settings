@@ -70,3 +70,6 @@
 {"label": "011 cursor в проектах", "points": [3.0, 3.0, 2.0, 3.0, 3.0, 3.0, 5.0], "shelf_seconds": 7008, "buffer_seconds": 1314, "actual_seconds": null}
 {"label": "917 grimoire krujok", "points": [3.0, 2.0], "shelf_seconds": 1122, "buffer_seconds": 204, "actual_seconds": null}
 {"label": "reference-prod-fill", "points": [3.0, 5.0, 2.0, 1.0], "shelf_seconds": 1062, "buffer_seconds": 192, "actual_seconds": null}
+{"label": "015-reference-prod", "points": [3.0, 3.0, 3.0, 1.0, 1.0], "shelf_seconds": 1158, "buffer_seconds": 216, "actual_seconds": null}
+{"label": "015-reference-napolnenie", "points": [3.0, 5.0, 2.0], "shelf_seconds": 942, "buffer_seconds": 174, "actual_seconds": null}
+{"label": "016-reference-semeystvo", "points": [3.0, 2.0, 1.0], "shelf_seconds": 642, "buffer_seconds": 120, "actual_seconds": null}
