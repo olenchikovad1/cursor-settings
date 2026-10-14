@@ -13,7 +13,7 @@
 физически нельзя.
 
 **Это правило проверяется хуком, а не памятью.** В Cursor —
-`~/.cursor/hooks/guard_plan_in_progress.py` на `stop` (в `hooks.json`,
+`~/.cursor/cursor-settings/hooks/guard_plan_in_progress.py` на `stop` (в `hooks.json`,
 `loop_limit: 400`) шлёт `followup_message`, пока у плана со
 `status: in-progress` остались незакрытые истории. Появился после того, как
 сессия остановилась на шестой истории из тридцати шести по собственному
@@ -35,7 +35,7 @@
 того, как план и проект найдены:
 
 ```bash
-py -X utf8 ~/.cursor/hooks/plan_session.py --claim <NNN> --session <UUID>
+py -X utf8 ~/.cursor/cursor-settings/hooks/plan_session.py --claim <NNN> --session <UUID>
 ```
 
 `<UUID>` — `conversation_id` / id из пути agent-transcripts этой беседы.

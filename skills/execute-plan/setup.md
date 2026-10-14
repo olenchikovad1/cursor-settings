@@ -33,7 +33,7 @@ depends_on: [017]              # другие планы, которые дол�
 Только через резолвер:
 
 ```bash
-py ~/.claude/hooks/resolve_project.py <name> --json
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py <name> --json
 ```
 
 Отдаёт `path`, `branch`, `remote`, `base_branch`, `branch_prefix`. Коды
@@ -41,7 +41,7 @@ py ~/.claude/hooks/resolve_project.py <name> --json
 **спросить пользователя**, а не угадывать: он скажет путь, резолвер запомнит
 его через `--register`.
 
-Контекст проекта — `~/.claude/projects.d/<name>.md`: базовая ветка, префикс
+Контекст проекта — `~/.cursor/projects.d/<name>.md`: базовая ветка, префикс
 ветки, команды тестов/сборки/линта, особенности стека. Если манифеста нет
 (проект новый) — вывести конвенции из README/CLAUDE.md проекта, а при
 неоднозначности (какая ветка базовая) спросить, не решать молча. Заодно

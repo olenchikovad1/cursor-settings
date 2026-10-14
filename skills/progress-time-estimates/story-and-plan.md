@@ -88,7 +88,7 @@ US-0042 «Пикинг по штрихкоду» — 5 SP, эталонно ~2 �
 из транскрипта:
 
 ```bash
-py -X utf8 ~/.claude/hooks/extract_steps.py --summary
+py -X utf8 ~/.cursor/cursor-settings/hooks/extract_steps.py --summary
 ```
 
 ## Проверка

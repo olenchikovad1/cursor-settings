@@ -21,17 +21,16 @@ description: >-
 
 ## 1. Убедиться, что настройки свежие
 
-`SessionStart`-хук уже сделал `git pull --rebase --autostash` в `~/.claude` и
-разложил транскрипты с памятью. Проверить, что это правда сработало:
+`SessionStart`-хук уже подтянул репозиторий настроек Cursor. Проверить, что
+это правда сработало:
 
 ```bash
-py -X utf8 ~/.claude/hooks/autosync_claude.py --status
-py -X utf8 ~/.claude/hooks/sync_state.py --status
+py -X utf8 ~/.cursor/cursor-settings/hooks/autosync_cursor.py --status
 ```
 
-Если `не подтянуто` больше нуля или в логе видна ошибка пула — сказать об
-этом **первым делом**: дальше всё будет читаться из устаревших файлов, и
-любые выводы окажутся неверными.
+Если команда падает или в статусе видна ошибка пула — сказать об этом
+**первым делом**: дальше всё будет читаться из устаревших файлов, и любые
+выводы окажутся неверными.
 
 ## 2. Найти незакрытые планы
 
@@ -58,7 +57,7 @@ grep -l "^status: in-progress" ~/.cursor/plans/[0-9][0-9][0-9]-*.md
 Путь — только через резолвер, вычислять нельзя:
 
 ```bash
-py ~/.claude/hooks/resolve_project.py <project> --json
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py <project> --json
 ```
 
 Дальше в этом каталоге:
@@ -109,7 +108,7 @@ git status --short
 менялось последним, чтобы пользователь сориентировался:
 
 ```bash
-git -C ~/.claude log --oneline -10
+git -C ~/.cursor/cursor-settings log --oneline -10
 ```
 
 ## Проверка

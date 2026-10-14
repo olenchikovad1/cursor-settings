@@ -10,14 +10,14 @@
 | офис | `C:/Projects/assemblage-point` |
 
 ```bash
-py ~/.claude/hooks/resolve_project.py <name> --json    # путь и контекст
-py ~/.claude/hooks/resolve_project.py --list           # все проекты и состояние
-py ~/.claude/hooks/resolve_project.py --rescan         # сбросить кэш, обойти корни
-py ~/.claude/hooks/resolve_project.py --register <name> <path>
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py <name> --json
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py --list
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py --rescan
+py -X utf8 ~/.cursor/cursor-settings/hooks/resolve_project.py --register <name> <path>
 ```
 
-Порядок: `path_expr` из манифеста (для машинно-независимых путей вроде
-`~/.claude`) → кэш `local.json` → обход `roots` с поиском репозитория, чей
+Порядок: `path_expr` из манифеста (для машинно-независимых путей) → кэш
+`local.json` → обход `roots` с поиском репозитория, чей
 `git remote get-url origin` совпадает с `remote` манифеста. Полный скан
 корней — около секунды.
 
@@ -39,19 +39,11 @@ py ~/.claude/hooks/resolve_project.py --register <name> <path>
 
 ### Добавить машину
 
-1. Клонировать репозиторий в `~/.claude`.
-2. Завести `local.json` **скриптом**, не руками:
-
-   ```bash
-   py -X utf8 ~/.claude/hooks/machine.py --init home --roots D:/Проекты
-   py -X utf8 ~/.claude/hooks/machine.py --status
-   ```
-
-   Скрипт проверит роль, не затрёт уже накопленный `cache` и дополнит
-   `roots`, а не заменит их. Схема полей — в `local.example.json`, он
-   отслеживается и приезжает с репозиторием ровно ради этого шага.
+1. Рабочая копия настроек — `~/.cursor/cursor-settings` (см. [cursor-sync.md](cursor-sync.md)).
+2. Завести `local.json` по `local.example.json`, не выдумывая поля. Схема
+   полей — в этом образце, он приезжает с репозиторием.
 3. Принести `infra_ssh_hosts.md` руками (в git его нет и не будет).
-4. Проверить `resolve_project.py --list` и `sync_state.py --status`.
+4. Проверить `resolve_project.py --list` и `autosync_cursor.py --status`.
 
 Пока роль не задана, `SessionStart` говорит об этом вслух на каждой сессии, а
 автосинк работает по-старому — пушит прямо в `master`. Это рабочий режим, но

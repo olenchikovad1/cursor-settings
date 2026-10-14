@@ -149,7 +149,7 @@
 ### Как завести новый эталон
 
 ```bash
-py -X utf8 ~/.claude/hooks/extract_steps.py --summary 10
+py -X utf8 ~/.cursor/cursor-settings/hooks/extract_steps.py --summary 10
 ```
 
 Сводка по видам с медианами и разбросом. Взять вид, которого нет в

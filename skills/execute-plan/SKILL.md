@@ -38,7 +38,7 @@ description: >-
   каталога вне проекта требует явной заявки первым действием.
 - **Остановку объявляет человек, а не я,** и происходит она на границе
   истории. Заявку при этом не снимать.
-- **Проверка — хук** `~/.cursor/hooks/guard_plan_in_progress.py` на `stop`
+- **Проверка — хук** `~/.cursor/cursor-settings/hooks/guard_plan_in_progress.py` на `stop`
   (`loop_limit: 400`) + правило `rules/plan-end-to-end.mdc`.
 
 ### План, проект и ветка → [setup.md](setup.md)
