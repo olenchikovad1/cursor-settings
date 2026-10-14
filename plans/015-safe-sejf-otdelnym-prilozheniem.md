@@ -554,6 +554,11 @@ US-0035: Passwork API preview вложений и людей без хранен
 
 **В работе на момент записи:** стенд — register-application, relocate грантов, убрать `platform/safe` из compose; живое скачивание вложений Passwork — по ключу владельца (`plans/notes/015-open-questions.md`).
 
+### 2026-10-12 · RBB-0001
+
+Принятое окно хранилища и правки выдачи — план 021. Истории US-0025…0036
+этим не переоткрываются.
+
 ### 2026-10-09 · правило «план от и до» в Cursor
 
 Stop-хук `guard_plan_in_progress` перенесён в `~/.cursor/hooks/` и подключён в `hooks.json` (`loop_limit: 400`); alwaysApply-правило `rules/plan-end-to-end.mdc`; `compact_hint` после сжатия напоминает модели продолжать план.
