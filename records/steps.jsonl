@@ -10583,3 +10583,4 @@
 {"sec": 2595.3, "kind": "тесты: целевые", "ref": "STEP-005", "ts": "2026-10-15T08:55:20.032042+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 23, "cmds": 45}}
 {"sec": 528.5, "kind": "тесты: целевые", "ref": "STEP-005", "ts": "2026-10-15T10:31:32.470064+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 5, "cmds": 11}}
 {"sec": 18.2, "kind": "код: новый файл", "ref": "STEP-001", "ts": "2026-10-15T10:44:51.334722+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 1}}
+{"sec": 70.8, "kind": "поиск по коду", "ref": "STEP-018", "ts": "2026-10-15T10:46:49.171806+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"cmds": 1}}
