@@ -10588,3 +10588,4 @@
 {"sec": 47.2, "kind": "git: пуш", "ref": "STEP-017", "ts": "2026-10-15T11:02:41.196911+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"cmds": 5}}
 {"sec": 252.0, "kind": "git: коммит", "ref": "STEP-016", "ts": "2026-10-15T11:25:47.782845+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 16, "cmds": 3}}
 {"sec": 1377.8, "kind": "тесты: целевые", "ref": "STEP-005", "ts": "2026-10-15T12:07:19.423751+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 19, "cmds": 17}}
+{"sec": 67.5, "kind": "поиск по коду", "ref": "STEP-018", "ts": "2026-10-15T12:33:15.282958+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn"}
