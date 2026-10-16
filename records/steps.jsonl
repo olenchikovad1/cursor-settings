@@ -10602,3 +10602,4 @@
 {"sec": 26.7, "kind": "команда прочая", "ref": "STEP-020", "ts": "2026-10-16T11:50:09.930867+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"cmds": 1}}
 {"sec": 29.3, "kind": "команда прочая", "ref": "STEP-020", "ts": "2026-10-16T11:51:04.122442+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"cmds": 1}}
 {"sec": 137.8, "kind": "поиск по коду", "ref": "STEP-018", "ts": "2026-10-16T17:29:16.618723+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"cmds": 8}}
+{"sec": 220.6, "kind": "git: пуш", "ref": "STEP-017", "ts": "2026-10-16T17:36:53.158068+00:00", "host": "DESKTOP-FA9EUCC", "model": "cursor", "unit": "turn", "scale": {"created": 3, "cmds": 14}}
